@@ -1,43 +1,3 @@
-# Setup an Express server using template engine ejs
-
-### Initiate a new Node.js project
-`npm init`
-
-### Create server file, like index.js, server.js, app.js
-`server.js`
-
-### Edit package.json to use ES6 module: import (not require)
-*package.json*
-`"type": "module"`
-
-install dependencies
-`npm install express`
-`npm install ejs`
-
-### Create folder structure
-Folder *public* to serve static files
-Folder named *views* is the default folder for template engine *ejs*
-
-```
-project
-└── public
-│ └── images
-│ └── styles
-│ └── js
-│
-└── views
-│ │── partials
-│ │ └── header.ejs
-│ │ default.ejs
-│ README.md
-│ server.js
-
-```
-
-### Edit server file
-
-```javascript
-
 import express from 'express';
 import ejs from 'ejs';
 
@@ -92,4 +52,3 @@ return res.status(500).send("Server error, please return later");
 app.listen(port, () => {
 console.log(`Server running on port ${port}`);
 });
-
