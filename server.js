@@ -13,6 +13,14 @@ const port = 3000;
 // -------------------------
 app.set('view engine', 'ejs');
 
+// use route modules
+import routeStart from './routes/start.js';
+app.use('/start', routeStart);
+app.use('/', routeStart);
+
+import routeCalendar from './routes/calendar.js';
+app.use('/calendar', routeCalendar);
+
 
 // middleware (use param next...)
 // -------------------------
