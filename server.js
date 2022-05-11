@@ -4,6 +4,12 @@ import ejs from 'ejs';
 // "app" environment
 // -------------------------
 const app = express();
+const calendar = require('./calendar.js');
+
+
+app.get("/", (req, res) => {
+    const year =req.query.years
+})
 
 // variables
 // -------------------------
@@ -34,6 +40,9 @@ app.use('/calendar', routeCalendar);
 app.get('/', (req, res) => {
 res.render('index');
 });
+
+// 
+
 
 // serve static files
 // -------------------------
