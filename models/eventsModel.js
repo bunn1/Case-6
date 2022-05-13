@@ -8,27 +8,27 @@ import fs from 'fs';
 // Shortcut "Path"
 const dbPath = "./calenderdb.json"
 
-export default {
+const quoteModel = {
     // Function to get Date and Time -----------------------------
     getDateTime: function () {
         // Convert JSON file to javascript and be able to read it -------------
-        console.log("fdkljfdaö")
+       
         return JSON.parse(fs.readFileSync(dbPath, 'utf8'));
     },
     addEvent: function (dateTime, author) {
 
-        // Method to write new date and time quote into database
+        // Method to write new date and time quote into database -------------------
 
         // Create new dateTime object
         const newDateTime = {
             dateTime,
             author
         }
-
-
-
-    }
+ }
 }
+
+export default quoteModel;
+
 
 
 
