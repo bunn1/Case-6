@@ -5,28 +5,35 @@
 
 import fs from 'fs';
 
-const dbPath = ""
+// Shortcut "Path"
+const dbPath = "./calenderdb.json"
 
 export default {
     // Function to get Date and Time -----------------------------
     getDateTime: function () {
-
         // Convert JSON file to javascript and be able to read it -------------
+        console.log("fdkljfdaö")
         return JSON.parse(fs.readFileSync(dbPath, 'utf8'));
     },
-
-    createDateTime: function (dateTime, author) {
+    addEvent: function (dateTime, author) {
 
         // Method to write new date and time quote into database
 
         // Create new dateTime object
-        const newDateTime = {dateTime, author }
-           
-        
+        const newDateTime = {
+            dateTime,
+            author
+        }
+
+
 
     }
 }
 
-for (let i = 0; i < myObj.datetime.length; i++) {
-    x += myObj.datetime[i];
-}
+
+
+
+
+// for (let i = 0; i < myObj.datetime.length; i++) {
+//     x += myObj.datetime[i];
+// }
