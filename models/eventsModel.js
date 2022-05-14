@@ -19,6 +19,9 @@ const quoteModel = {
 
         // Method to write new date and time quote into database -------------------
 
+        const allDateTime = this.getDateTime();
+      
+
         // Create new dateTime object
         const newDateTime = {
             dateTime,
