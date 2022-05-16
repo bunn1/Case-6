@@ -5,9 +5,10 @@ import express from 'express'
 const router = express.Router();
 let obj = {navigationLinks: ["Start", "Calendar"], page:"calendar"};
 
-router.route('/')
+router.route('/calendar')
 .get((req, res) => {
-res.render('calendar', obj);
+    res.send('calendar')
+// res.render('calendar', obj);
 });
 
 export default router;

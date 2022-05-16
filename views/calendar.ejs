@@ -8,6 +8,21 @@
 </head>
 <body>
 
+    <header>Kalender</header>
+
+    <main>
+
+        <% events.forEach(event => { %>
+            <h2><%= event.title %></h2>
+            <p><%= event.dateTime %> </p>
+        <% }) %>
+
+
+    </main>
+
+    <footer>
+        <button>Add Event</button>
+    </footer>
     
 
 

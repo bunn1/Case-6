@@ -8,9 +8,9 @@ import fs from 'fs';
 // Shortcut "Path"
 const dbPath = "./calenderdb.json"
 
-const quoteModel = {
+const eventModel = {
     // Function to get Date and Time -----------------------------
-    getDateTime: function () {
+    getAllEvents: function () {
         // Convert JSON file to javascript and be able to read it -------------
        
         return JSON.parse(fs.readFileSync(dbPath, 'utf8'));
@@ -30,7 +30,7 @@ const quoteModel = {
  }
 }
 
-export default quoteModel;
+export default eventModel;
 
 
 
