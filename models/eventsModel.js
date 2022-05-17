@@ -39,13 +39,13 @@ const dbPath = "./calenderdb.json"
 // export default eventModel;
 
 
-import fs from "fs";
+// import fs from "fs";
 
 const dbpath = "./calenderdb.json";
 
 const eventModel = {
     getAllEvents: function () {
-        return JSON.parse(fs.readFileSync(database, "utf-8"));
+        return JSON.parse(fs.readFileSync(dbpath, "utf-8"));
     },
     getEvent: function (id) {
         return this.readEvents().find((event) => event.id === id);
