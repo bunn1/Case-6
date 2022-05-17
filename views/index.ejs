@@ -1,368 +1,90 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
 
-    <%- include("partials/header.ejs") %>
+  <!DOCTYPE html>
+  <html lang="en">
 
-    <header>
-        <h1>Welcome To My Weekly Calendar</h1>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start</title>
 
-        <form action"/" method="get">
-            <input type="text" placeholder="search week" name="week">
-        </form>
-        <h2>year <%= year %></h2>
-    </header>
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- FIX FOR FAVICON.ICO -->
+    <link rel="shortcut icon" href="#">
+  </head>
 
-    <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>
-              <span class="day">1</span>
-              <span class="long">Monday</span>
-              <span class="short">Mon</span>
-            </th>
-            <th>
-              <span class="day">2</span>
-              <span class="long">Tuesday</span>
-              <span class="short">Tue</span>
-            </th>
-            <th>
-              <span class="day">3</span>
-              <span class="long">Wendsday</span>
-              <span class="short">We</span>
-            </th>
-            <th>
-              <span class="day">4</span>
-              <span class="long">Thursday</span>
-              <span class="short">Thur</span>
-            </th>
-            <th>
-              <span class="day active">5</span>
-              <span class="long">Friday</span>
-              <span class="short">Fri</span>
-            </th>
-            <th>
-              <span class="day">6</span>
-              <span class="long">Saturday</span>
-              <span class="short">Sat</span>
-            </th>
-            <th>
-              <span class="day">7</span>
-              <span class="long">Sunday</span>
-              <span class="short">Sun</span>
-            </th>
-          </tr>
-        </thead>
-        <!-- <tbody>
-          <tr>
-            <td class="hour" rowspan="4"><span>1:00</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="hour" rowspan="4"><span>2:00</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          
-          <tr>
-            <td class="hour" rowspan="4"><span>3:00</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="hour" rowspan="4"><span>4:00</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="hour" rowspan="4"><span>5:00</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="hour" rowspan="4"><span>6:00</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="hour" rowspan="4"><span>7:00</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="hour" rowspan="4"><span>8:00</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    
+  <body>
+    <!-- Header -->
+    <%- include('partials/header.ejs') %>
+
+
+    <main>
+      <h1>Hello</h1>
+
+      <div id="testBox">
+        <% locals.events.forEach(ele => { %>
+        <%- ele.title %> <%- ele.date %>
+        <% }) %>
+      </div>
+
+      <form action="/" method="post">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title">
+        <label for="desc">Description</label>
+        <input type="text" name="date" id="date">
+        <button type="submit">Create</button>
+      </form>
+
+      <div class="container">
+        <div class="wrapper">
+
+          <ul class="day-card">
+            <h2>MONDAY</h2>
+            <p> title placeholder </p>
+            <li class="event-card">
+              <p class="testtest">date placeholder</p>
+            </li>
+            <button type="submit">Add event</button>
+
+          </ul>
+          <ul class="day-card active">
+            <h2>TUESDAY</h2>
+            <p> title placeholder </p>
+            <li class="event-card">
+              <p class="testtest">date placeholder</p>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <%- include('partials/footer.ejs') %>
+
+    <!-- <script>
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  });
+  </script> -->
+  </body>
+
+  </html>
+
+
 
 </body>
 
-</html> -->
+</html>
