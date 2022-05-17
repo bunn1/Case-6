@@ -2,6 +2,7 @@ import express from 'express';
 import ejs from 'ejs';
 import http from 'http';
 import eventModel from './models/eventsModel.js'
+import eventController from './controllers/eventController.js'
 // import * as calendar from '/routes/calendar.js'
 
 // "app" environment
@@ -17,16 +18,23 @@ const port = 3000;
 // -------------------------
 app.set('view engine', 'ejs');
 
+app.use(express.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
     res.send('hell0o')
 })
 
-app.get('/calendar', (req, res) => {
-    let events = eventModel.getAllEvents();
-    res.render('calendar', {
+app.get('/index', (req, res) => {
+    let events = eventModel.readEvents();
+    res.render('index', {
         events : events
     })
 })
+
+app.post('/', eventController.createEvent);
+
+
+
 // use route modules
 // import routeStart from './routes/start.js';
 // app.use('/start', routeStart);

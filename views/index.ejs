@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start</title>
 
-    <link rel="stylesheet" href="styles/styles.css">
+    <!-- <link rel="stylesheet" href="styles/styles.css"> -->
     <!-- FIX FOR FAVICON.ICO -->
     <link rel="shortcut icon" href="#">
   </head>
@@ -27,6 +27,13 @@
   <body>
     <!-- Header -->
     <%- include('partials/header.ejs') %>
+
+
+    <% events.forEach(event => { %>
+      <h2><%= event.title %></h2>
+      <p><%= event.dateTime %> </p>
+  <% }) %>
+
 
 
     <main>

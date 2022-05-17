@@ -1,6 +1,6 @@
 import express from "express";
-import eventViews from "../views/eventViews.js";
-import eventModel from "../models/eventModel.js";
+
+import eventModel from "../models/eventsModel.js";
 
 
 export default {
@@ -18,7 +18,7 @@ export default {
             });
             return;
         }
-
+        // skapa ett event som heter event / skapar ett object 
         res.render("index", {
             events: eventModel.readEvents()
         });
