@@ -53,8 +53,7 @@ app.get('/calendar', (req, res) => {
 // 
 
 // serve static files
-// -------------------------
-// app.use(express.static('public'));
+app.use(express.static('index'));
 
 // handle errors
 // -------------------------
