@@ -18,7 +18,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start</title>
+    <script>
+      async function deleteEvent(id) {
+        const response = await fetch (`/index/${id}`, {method:"delete"})
+        // if (response.redirected) {
+        //   window.location.href = response.url;
+        console.log("Hello deleteEvent", id)
+        }
+         
+      
 
+    </script>
     <!-- <link rel="stylesheet" href="styles/styles.css"> -->
     <!-- FIX FOR FAVICON.ICO -->
     <link rel="shortcut icon" href="#">
@@ -42,6 +52,7 @@
       <div id="testBox">
         <% locals.events.forEach(ele => { %>
         <%- ele.title %> <%- ele.date %>
+        <button onclick="deleteEvent(id)">Delete</button>
         <% }) %>
       </div>
 
@@ -51,7 +62,7 @@
         <label for="desc">Description</label>
         <input type="text" name="date" id="date">
         <button type="submit">Create</button>
-        <button onclick="deleteEvent()"></button>
+       
       </form>
 
       <div class="container">
@@ -65,7 +76,7 @@
               <p class="testtest">date placeholder</p>
             </li>
             <button type="submit">Add event</button>
-
+            
           </ul>
 
           <h2>TUESDAY</h2>

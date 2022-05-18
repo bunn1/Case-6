@@ -31,6 +31,15 @@ export default {
         const id = req.body.id;
         const check = eventModel.deleteEvent(id); 
     }
+
+    
+
+    // today.setDate(today.getDate() - today.getDay() + 1 )
+
+
+
+
+
 //     deleteEvent:(req, res) => {
 
 //         var params = {

@@ -18,11 +18,12 @@ const port = 3000;
 // -------------------------
 app.set('view engine', 'ejs');
 
+// Handle form Post
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-    res.send('hell0o')
-})
+// app.get("/", (req, res) => {
+//     res.send('hell0o')
+// })
 
 app.get('/index', (req, res) => {
     let events = eventModel.readEvents();
@@ -32,6 +33,8 @@ app.get('/index', (req, res) => {
 })
 
 app.post('/', eventController.createEvent);
+
+app.delete('index/:id', eventController.deleteEvent);
 
 
 

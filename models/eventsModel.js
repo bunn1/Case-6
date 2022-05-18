@@ -64,13 +64,14 @@ const eventModel = {
             title,
             date
         };
-
+        // 
         allEvents.push(newEvent);
-
+        // Save event
         this.saveEvent(allEvents);
 
         return true;
     },
+    // Radera eventet
     deleteEvent: function(id) {
         const allEvents = this.readEvents();
        let newArray = allEvents.filter(function(element){
