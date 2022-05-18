@@ -1,0 +1,67 @@
+:root {
+  --black: #333;
+  --white: #fff;
+}
+
+$theme-colors: (
+  "white": #fff,
+  "base": #1c1c1c,
+  "primary": #626ed4,
+  "secondary": #ee4266,
+  "success": #0bae67,
+  "danger": #dd1536,
+  "warning": #f8b425,
+  "info": #38a5f8
+) !default;
+
+// !important gör att den css går över hierarki
+// !default Motsatsen till important
+
+// -- CONTAINER -- 
+$container-width: 1200 !default;
+
+// -- GRID --
+$grid-cols: 12 !default;
+$gap: 1;
+
+$grid-cols-calendar: 7 !default;
+
+// -- BREAKPOINT --
+$grid-bp-small: 576 !default;
+$grid-bp-medium: 768 !default;
+$grid-bp-large: 992 !default;
+$grid-bp-xlarge: 1200 !default;
+$grid-bp-stupid-show-off-large-screen: 4000 !default;
+
+// -- GRID MAP --
+$map-grid-prop: ('': 0,
+  '-small': $grid-bp-small,
+  '-medium': $grid-bp-medium,
+  '-large': $grid-bp-large,
+  '-xlarge': $grid-bp-xlarge,
+  '-stupid-show-off': $grid-bp-stupid-show-off-large-screen,
+) !default;
+
+
+// -- FONTS --
+$font-family-sans-serif: system-ui,
+-apple-system,
+"segoe UI",
+Roboto,
+"Helvetica Neue",
+Arial,
+"Noto Sans",
+"Liberation Sans",
+sans-serif,
+"Apple Color Emoji",
+"Segoe UI Emoji",
+"Segoe UI Symbol",
+"Noto Color Emoji" !default;
+
+$font-family-monospace: SFMono-regular,
+Menlo,
+Monaco,
+Consolas,
+"Liberation Mono",
+"Courier New",
+monospace !default;

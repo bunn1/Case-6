@@ -5,114 +5,96 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="../public/styles/main.css">
+  <title>Start</title>
+  <script>
+    async function deleteEvent(id) {
+      const response = await fetch(`/index/${id}`, {
+        method: "delete"
+      })
+      // if (response.redirected) {
+      //   window.location.href = response.url;
+      console.log("Hello deleteEvent", id)
+    }
+  </script>
+  <!-- <link rel="stylesheet" href="styles/styles.css"> -->
+  <!-- FIX FOR FAVICON.ICO -->
+  <link rel="shortcut icon" href="#">
 </head>
 
 <body>
-
-  <!DOCTYPE html>
-  <html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start</title>
-    <script>
-      async function deleteEvent(id) {
-        const response = await fetch (`/index/${id}`, {method:"delete"})
-        // if (response.redirected) {
-        //   window.location.href = response.url;
-        console.log("Hello deleteEvent", id)
-        }
-         
-      
-
-    </script>
-    <!-- <link rel="stylesheet" href="styles/styles.css"> -->
-    <!-- FIX FOR FAVICON.ICO -->
-    <link rel="shortcut icon" href="#">
-  </head>
-
-  <body>
-    <!-- Header -->
-    <%- include('partials/header.ejs') %>
+  <!-- Header -->
+  <%- include('partials/header.ejs') %>
 
 
-    <% events.forEach(event => { %>
-    <h2><%= event.title %></h2>
-    <p><%= event.dateTime %> </p>
-    <% }) %>
+  <% events.forEach(event => { %>
+  <h2><%= event.title %></h2>
+  <p><%= event.dateTime %> </p>
+  <% }) %>
 
 
 
-    <main>
-      <h1>Calendar</h1>
+  <main>
+    <h1>Calendar</h1>
 
-      <div id="testBox">
-        <% locals.events.forEach(ele => { %>
-        <%- ele.title %> <%- ele.date %>
-        <button onclick="deleteEvent(id)">Delete</button>
-        <% }) %>
+    <div id="testBox">
+      <% locals.events.forEach(ele => { %>
+      <%- ele.title %> <%- ele.date %>
+      <button onclick="deleteEvent(<%= ele.id %>)">Delete</button>
+      <% }) %>
+    </div>
+
+    <form action="/" method="post">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title">
+      <label for="desc">Description</label>
+      <input type="text" name="date" id="date">
+      <button type="submit">Create</button>
+
+    </form>
+
+    <div class="container">
+      <div class="wrapper">
+
+        <h2>MONDAY</h2>
+        <ul class="day-card">
+
+          <p> title placeholder </p>
+          <li class="event-card">
+            <p class="testtest">date placeholder</p>
+          </li>
+          <button type="submit">Add event</button>
+
+        </ul>
+
+        <h2>TUESDAY</h2>
+        <ul class="day-card active">
+
+          <p> title placeholder </p>
+          <li class="event-card">
+            <p class="testtest">date placeholder</p>
+          </li>
+        </ul>
+
       </div>
+    </div>
+  </main>
 
-      <form action="/" method="post">
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title">
-        <label for="desc">Description</label>
-        <input type="text" name="date" id="date">
-        <button type="submit">Create</button>
-       
-      </form>
+  <!-- Footer -->
+  <%- include('partials/footer.ejs') %>
 
-      <div class="container">
-        <div class="wrapper">
-
-          <h2>MONDAY</h2>
-          <ul class="day-card">
-
-            <p> title placeholder </p>
-            <li class="event-card">
-              <p class="testtest">date placeholder</p>
-            </li>
-            <button type="submit">Add event</button>
-            
-          </ul>
-
-          <h2>TUESDAY</h2>
-          <ul class="day-card active">
-
-            <p> title placeholder </p>
-            <li class="event-card">
-              <p class="testtest">date placeholder</p>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <%- include('partials/footer.ejs') %>
-
-    <!-- <script>
+  <!-- <script>
   const form = document.querySelector("form");
   form.addEventListener("submit", (event) => {
   event.preventDefault();
   });
   </script> -->
 
-    <!-- <script>
+  <!-- <script>
       async function deleteEvent() {
         console.log("delete test");
       }
     </script> -->
-  </body>
-
-  </html>
-
-
-
 </body>
 
 </html>

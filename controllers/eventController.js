@@ -30,6 +30,10 @@ export default {
     deleteEvent: (req, res) => {
         const id = req.body.id;
         const check = eventModel.deleteEvent(id); 
+        this._id.delete(id)
+
+       
+
     }
 
     

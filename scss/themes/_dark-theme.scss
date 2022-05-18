@@ -1,0 +1,9 @@
+.dark {
+  --black: #fff;
+  --white: #333;
+
+  .mask {
+    filter: invert(.9);
+    mix-blend-mode: multiply;
+  }
+}
