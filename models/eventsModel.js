@@ -70,6 +70,14 @@ const eventModel = {
         this.saveEvent(allEvents);
 
         return true;
+    },
+    deleteEvent: function(id) {
+        const allEvents = this.readEvents();
+       let newArray = allEvents.filter(function(element){
+           return element.id !==id ;
+           
+       })
+       console.log(newArray)
     }
 }
 

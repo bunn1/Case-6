@@ -30,9 +30,9 @@
 
 
     <% events.forEach(event => { %>
-      <h2><%= event.title %></h2>
-      <p><%= event.dateTime %> </p>
-  <% }) %>
+    <h2><%= event.title %></h2>
+    <p><%= event.dateTime %> </p>
+    <% }) %>
 
 
 
@@ -51,6 +51,7 @@
         <label for="desc">Description</label>
         <input type="text" name="date" id="date">
         <button type="submit">Create</button>
+        <button onclick="deleteEvent()"></button>
       </form>
 
       <div class="container">
@@ -58,7 +59,7 @@
 
           <h2>MONDAY</h2>
           <ul class="day-card">
-            
+
             <p> title placeholder </p>
             <li class="event-card">
               <p class="testtest">date placeholder</p>
@@ -69,7 +70,7 @@
 
           <h2>TUESDAY</h2>
           <ul class="day-card active">
-           
+
             <p> title placeholder </p>
             <li class="event-card">
               <p class="testtest">date placeholder</p>
@@ -89,6 +90,12 @@
   event.preventDefault();
   });
   </script> -->
+
+    <!-- <script>
+      async function deleteEvent() {
+        console.log("delete test");
+      }
+    </script> -->
   </body>
 
   </html>
