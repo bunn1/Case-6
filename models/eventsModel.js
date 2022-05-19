@@ -57,7 +57,7 @@ const eventModel = {
     addEvent: function (title, date) {
         const allEvents = this.readEvents();
         const lastEvent = allEvents[allEvents.length - 1];
-        const newId = (lastEvent?.id || 0) + 1;
+        const newId = (lastEvent ?.id || 0) + 1;
 
         const newEvent = {
             id: newId,
@@ -72,13 +72,15 @@ const eventModel = {
         return true;
     },
     // Radera eventet
-    deleteEvent: function(id) {
+    deleteEvent: function (id) {
         const allEvents = this.readEvents();
-       let newArray = allEvents.filter(function(element){
-           return element.id !==id ;
-           
-       })
-       console.log(newArray)
+        console.log("Delete Event Was Called ")
+        let newArray = allEvents.filter(function (element) {   
+            return element.id !== id;
+        })
+        // console.log("newArray", newArray);
+        this.saveEvent(newArray)
+        
     }
 }
 
