@@ -34,9 +34,17 @@ app.get('/index', (req, res) => {
 
 app.post('/', eventController.createEvent);
 
-app.delete('index/:id', eventController.deleteEvent);
+app.delete('/index/:id', eventController.deleteEvent);
 
 
+
+// app.deleteEvent({ id: '1' }, (error, _) => {
+//     if (!error) {
+//       console.log('Event Has been successfully deleted')
+//     } else {
+//       console.error(error)
+//     }
+//   })
 
 // use route modules
 // import routeStart from './routes/start.js';

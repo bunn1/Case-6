@@ -29,11 +29,9 @@ export default {
     },
     deleteEvent: (req, res) => {
         const id = req.body.id;
+        // const id = Number(req.params.id);
+        console.log(id)
         const check = eventModel.deleteEvent(id); 
-        this._id.delete(id)
-
-       
-
     }
 
     
