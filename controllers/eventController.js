@@ -31,9 +31,36 @@ export default {
         const id = req.body.id;
         // const id = Number(req.params.id);
         console.log(id)
+        
         const check = eventModel.deleteEvent(id); 
-    }
+    },
 
+    // updateEvent: (req, res) => {
+    //     const id = Number(req.params.id);
+    //     const event = req.body.event;
+    //     const title = req.body.title;
+        
+    //     if (id < 0) {
+    //         console.log(quoteEvents.errorInvalidId);
+    //         return;
+    //     }
+
+    //     if (!event || !title) {
+    //         console.log("Event and Title is not defined", event, title);
+    //         return;
+    //     }
+
+    //     const isOK = eventsModel.updateEvent(id, event, title);
+
+    //     if (!isOK) {
+    //         console.log("Event not Updated");
+    //         return;
+    //     }
+
+    //     console.log("Event Updated");
+
+    //     res.redirect('/');
+    // },
     
 
     // today.setDate(today.getDate() - today.getDay() + 1 )

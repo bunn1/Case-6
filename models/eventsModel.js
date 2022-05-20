@@ -78,10 +78,41 @@ const eventModel = {
         let newArray = allEvents.filter(function (element) {   
             return element.id !== id;
         })
-        // console.log("newArray", newArray);
+        console.log("newArray", newArray);
         this.saveEvent(newArray)
+        this.delete("id")
         
-    }
+    },
+
+
+    // updateEvent: function (id, title, date) {
+    //     // Get all quotes
+    //     const allEvents = this.getEvents();
+    
+    //     // if quotes are not defined we return false
+    //     // to signal that something went wrong
+    //     if (!allEvents) {
+    //       return false;
+    //     }
+    
+    //     // Update quote specified by id
+    //     const idx = allEvents.findIndex((event) => event.id === id);
+    
+    //     if (idx < 0) {
+    //       return false;
+    //     }
+    
+    //     allEvents[idx].events = newEvent;
+    //     allEvents[idx].title = newTitle;
+    
+    //     // Write new state to db
+    //     this.saveEvents(allEvents);
+    
+    //     return true;
+    //   },
+
 }
+
+
 
 export default eventModel;

@@ -34,7 +34,13 @@ app.get('/index', (req, res) => {
 
 app.post('/', eventController.createEvent);
 
+
+
 app.delete('/index/:id', eventController.deleteEvent);
+
+// app.put('/events/:id', eventController.updateEvent);
+
+
 
 
 
