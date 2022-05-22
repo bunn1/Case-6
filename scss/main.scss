@@ -23,4 +23,20 @@
 @import "themes/dark-theme";
 
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #FFFF
+} 
+  
+.parent {
+    display: grid;
+    height:200px;
+    width:200px;
+    row-gap: 20px;
+    background-color:orange;
+    grid-template-columns: repeat(4, 1fr);
+ }
+
  

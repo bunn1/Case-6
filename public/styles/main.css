@@ -1400,4 +1400,23 @@ img {
           filter: invert(0.9);
   mix-blend-mode: multiply;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #FFFF;
+}
+
+.parent {
+  display: -ms-grid;
+  display: grid;
+  height: 200px;
+  width: 200px;
+  row-gap: 20px;
+  background-color: orange;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+}
 /*# sourceMappingURL=main.css.map */
