@@ -27,16 +27,59 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #FFFF
+    
 } 
   
 .parent {
     display: grid;
-    height:300px;
-    width:300px;
-    row-gap: 20px;
     background-color:orange;
-    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid purple;
+    padding: 15px;
  }
+
+ header{
+     background-color:blue;
+     text-align:center;
+     padding:10px;
+     margin-bottom: 10px;
+     border: 1px red solid;
+ }
+
+ #changeWeek{
+display: flex;
+justify-content: space-between;
+align-items:center;
+padding:15px;
+margin-bottom:10px;
+border: 1px green solid;
+
+#currentWeek{
+    font-weight:bold;
+    font-size:1.3rem;
+}
+}
+
+footer{
+    background-color:blue;
+    position:fixed;
+    bottom:0;
+    width: 100%;
+    height:40px;
+    display: flex;
+    justify-content: center;
+
+    #addNewEvent{
+       display: flex;
+       height:50px;
+       width: 50px;
+       border-radius: 50%;
+       background-color: blue;
+       align-items:center;
+       justify-content:center;
+       position:absolute;
+       top: -25px;
+    }
+}
+
 
  

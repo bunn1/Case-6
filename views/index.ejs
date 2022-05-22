@@ -37,14 +37,16 @@
   <% }) %>
 
 
+  <div id="changeWeek">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+    <div id="currentWeek">20</div>
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </div>
 
   <div class="parent">
 
-    <div class="grid-1">
-      <h1>Calendar</h1>
-    </div>
 
-    <div class="grid-2">
+    <div class="oneDay">
       <h2>MONDAY</h2>
       <ul class="day-card">
         <p> Title </p>
@@ -54,7 +56,7 @@
       </ul>
     </div>
 
-    <div class="grid-3"></div>
+    <div class="oneDay">
     <h2>TUESDAY</h2>
     <ul class="day-card active">
       <p> Title </p>
@@ -62,6 +64,39 @@
         <p class="testtest">Date</p>
       </li>
     </ul>
+    </div>
+
+    <div class="oneDay">
+      <h2>WEDNESDAY</h2>
+      <ul class="day-card">
+        <p> Title </p>
+        <li class="event-card">
+          <p class="testtest">Date</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="oneDay">
+      <h2>THURSDAY</h2>
+      <ul class="day-card">
+        <p> Title </p>
+        <li class="event-card">
+          <p class="testtest">Date</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="oneDay">
+      <h2>FRIDAY</h2>
+      <ul class="day-card">
+        <p> Title </p>
+        <li class="event-card">
+          <p class="testtest">Date</p>
+        </li>
+      </ul>
+    </div>
+
+
     <form action="/" method="post">
       <label for="title">Event</label>
       <input type="text" name="title" id="title">
@@ -83,18 +118,8 @@
   <!-- Footer -->
   <%- include('partials/footer.ejs') %>
 
-  <!-- <script>
-  const form = document.querySelector("form");
-  form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  });
-  </script> -->
-
-  <!-- <script>
-      async function deleteEvent() {
-        console.log("delete test");
-      }
-    </script> -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

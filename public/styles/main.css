@@ -1406,17 +1406,73 @@ img {
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  background-color: #FFFF;
 }
 
 .parent {
   display: -ms-grid;
   display: grid;
-  height: 300px;
-  width: 300px;
-  row-gap: 20px;
   background-color: orange;
-  -ms-grid-columns: (1fr)[4];
-      grid-template-columns: repeat(4, 1fr);
+  border: 1px solid purple;
+  padding: 15px;
+}
+
+header {
+  background-color: blue;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px red solid;
+}
+
+#changeWeek {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px green solid;
+}
+
+#changeWeek #currentWeek {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+footer {
+  background-color: blue;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+footer #addNewEvent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: blue;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  top: -25px;
 }
 /*# sourceMappingURL=main.css.map */
