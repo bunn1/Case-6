@@ -1,0 +1,11 @@
+   
+.parent {
+    display: grid;
+    height:200px;
+    width:200px;
+    row-gap: 20px;
+    background-color:orange;
+    grid-template-columns: repeat(4, 1fr);
+ }
+    
+    

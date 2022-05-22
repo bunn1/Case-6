@@ -21,6 +21,14 @@ app.set('view engine', 'ejs');
 // Handle form Post
 app.use(express.urlencoded({ extended: true }));
 
+
+// Must have so Css work
+app.use(express.static("."));
+// Must have so Css work
+app.get('/style.css', function(req, res) {
+    res.sendFile(__dirname + "/" + "style.css");
+  });
+
 // app.get("/", (req, res) => {
 //     res.send('hell0o')
 // })

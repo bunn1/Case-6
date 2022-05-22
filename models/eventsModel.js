@@ -80,9 +80,12 @@ const eventModel = {
         })
         console.log("newArray", newArray);
         this.saveEvent(newArray)
-        this.delete("id")
+      
+    
+
+        }
         
-    },
+    }
 
 
     // updateEvent: function (id, title, date) {
@@ -111,7 +114,7 @@ const eventModel = {
     //     return true;
     //   },
 
-}
+
 
 
 

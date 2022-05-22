@@ -5,23 +5,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/public/styles/main.css">
-  <!-- <link rel="stylesheet" href="../public/styles/main.css"> -->
+  <!-- <link rel="stylesheet" href="/public/styles/style.css"> -->
+  <link rel="stylesheet" href="../public/styles/main.css">
   <title>Start</title>
   <script>
     async function deleteEvent(id) {
       const response = await fetch(`/index/${id}`, {
         method: "delete"
       })
-      
+
       if (response.redirected) {
         window.location.href = response.url;
 
-      console.log("Hello deleteEvent", id)
+        console.log("Hello deleteEvent", id)
+      }
     }
-     }
-
-     
   </script>
   <!-- <link rel="stylesheet" href="styles/styles.css"> -->
   <!-- FIX FOR FAVICON.ICO -->
@@ -40,51 +38,50 @@
 
 
 
-  <main>
-    <h1>Calendar</h1>
+  <div class="parent">
 
-    <div id="testBox">
-      <% locals.events.forEach(ele => { %>
-      <%- ele.title %> <%- ele.date %>
-      <button onclick="deleteEvent(<%= ele.id %>)">Delete</button>
-      <% }) %>
+    <div class="grid-1">
+      <h1>Calendar</h1>
     </div>
 
-    <form action="/" method="post">
-      <label for="title">Title</label>
-      <input type="text" name="title" id="title">
-      <label for="desc">Description</label>
-      <input type="text" name="date" id="date">
-      <button type="submit">Create</button>
 
-    </form>
-
-    <div class="container">
-      <div class="wrapper">
-
-        <h2>MONDAY</h2>
-        <ul class="day-card">
-
-          <p> title placeholder </p>
-          <li class="event-card">
-            <p class="testtest">date placeholder</p>
-          </li>
-          <button type="submit">Add event</button>
-
-        </ul>
-
-        <h2>TUESDAY</h2>
-        <ul class="day-card active">
-
-          <p> title placeholder </p>
-          <li class="event-card">
-            <p class="testtest">date placeholder</p>
-          </li>
-        </ul>
-
-      </div>
+    <div class="grid-2">
+      <form action="/" method="post">
+        <label for="title">Event</label>
+        <input type="text" name="title" id="title">
+        <label for="desc">Date And Time</label>
+        <input type="text" name="date" id="date">
+        <button type="submit">Create</button>
+        <% locals.events.forEach(ele => { %>
+        <%- ele.title %> <%- ele.date %>
+        <button onclick="deleteEvent(<%= ele.id %>)">Delete</button>
+        <% }) %>
+      </form>
     </div>
-  </main>
+
+    <div class="grid-3">
+      <h2>MONDAY</h2>
+      <ul class="day-card">
+        <p> Title </p>
+        <li class="event-card">
+          <p class="testtest">Date</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="grid-4"></div>
+      <h2>TUESDAY</h2>
+      <ul class="day-card active">
+      <p> Title </p>
+      <li class="event-card">
+        <p class="testtest">Date</p>
+      </li>
+      </ul>
+      <button type="submit">Add event</button>
+    </div>
+
+  </div>
+  
 
   <!-- Footer -->
   <%- include('partials/footer.ejs') %>
