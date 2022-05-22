@@ -44,22 +44,7 @@
       <h1>Calendar</h1>
     </div>
 
-
     <div class="grid-2">
-      <form action="/" method="post">
-        <label for="title">Event</label>
-        <input type="text" name="title" id="title">
-        <label for="desc">Date And Time</label>
-        <input type="text" name="date" id="date">
-        <button type="submit">Create</button>
-        <% locals.events.forEach(ele => { %>
-        <%- ele.title %> <%- ele.date %>
-        <button onclick="deleteEvent(<%= ele.id %>)">Delete</button>
-        <% }) %>
-      </form>
-    </div>
-
-    <div class="grid-3">
       <h2>MONDAY</h2>
       <ul class="day-card">
         <p> Title </p>
@@ -69,19 +54,31 @@
       </ul>
     </div>
 
-    <div class="grid-4"></div>
-      <h2>TUESDAY</h2>
-      <ul class="day-card active">
+    <div class="grid-3"></div>
+    <h2>TUESDAY</h2>
+    <ul class="day-card active">
       <p> Title </p>
       <li class="event-card">
         <p class="testtest">Date</p>
       </li>
-      </ul>
-      <button type="submit">Add event</button>
-    </div>
+    </ul>
+    <form action="/" method="post">
+      <label for="title">Event</label>
+      <input type="text" name="title" id="title">
+      <label for="desc">Date And Time</label>
+      <input type="text" name="date" id="date">
+      <button type="submit">Create</button>
+      <% locals.events.forEach(ele => { %>
+      <%- ele.title %> <%- ele.date %>
+      <button onclick="deleteEvent(<%= ele.id %>)">Delete</button>
+      <% }) %>
+    </form>
+
+    <!-- <button type="submit">Add event</button> -->
+  </div>
 
   </div>
-  
+
 
   <!-- Footer -->
   <%- include('partials/footer.ejs') %>

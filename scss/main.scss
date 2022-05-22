@@ -32,8 +32,8 @@
   
 .parent {
     display: grid;
-    height:200px;
-    width:200px;
+    height:300px;
+    width:300px;
     row-gap: 20px;
     background-color:orange;
     grid-template-columns: repeat(4, 1fr);

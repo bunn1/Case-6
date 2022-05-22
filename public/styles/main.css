@@ -1412,8 +1412,8 @@ img {
 .parent {
   display: -ms-grid;
   display: grid;
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
   row-gap: 20px;
   background-color: orange;
   -ms-grid-columns: (1fr)[4];
