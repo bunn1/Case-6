@@ -7,6 +7,7 @@ import fs from 'fs';
 // import events from 'events';
 
 // Shortcut "Path"
+const data= "./calenderdb.json"
 
 
 
@@ -84,7 +85,7 @@ const eventsModel = {
 
         },
         
-    updateEvent: function (id, title, date) {
+    updateEvent: function (id, newTitle, newDate) {
         // Get all quotes
         const allEvents = this.getEvents();
     
@@ -100,6 +101,8 @@ const eventsModel = {
         if (idx < 0) {
           return false;
         }
+
+        // Här sker uppdateringen
         allEvents[idx].title = newTitle;
         allEvents[idx].date = newDate;
     
@@ -109,4 +112,7 @@ const eventsModel = {
         return true;
       }
     }
+
+
+
 export default eventsModel;

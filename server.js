@@ -44,8 +44,9 @@ app.get('/index', (req, res) => {
 app.post('/index', eventController.createEvent);
 
 
-
+// For Delete
 app.delete('/index/:id', eventController.deleteEvent);
+
 // For Update/Edit function
 app.put('/events/:id', eventController.updateEvent);
 
