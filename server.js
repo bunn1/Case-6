@@ -1,8 +1,9 @@
 import express from 'express';
 import ejs from 'ejs';
 import http from 'http';
-import eventModel from './models/eventsModel.js'
+import eventsModel from './models/eventsModel.js'
 import eventController from './controllers/eventController.js'
+
 // import * as calendar from '/routes/calendar.js'
 
 // "app" environment
@@ -22,9 +23,9 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
 
-// Must have so Css work
+// Must have so Css works
 app.use(express.static("."));
-// Must have so Css work
+// Must have so Css works
 app.get('/style.css', function(req, res) {
     res.sendFile(__dirname + "/" + "style.css");
   });
@@ -34,23 +35,21 @@ app.get('/style.css', function(req, res) {
 // })
 
 app.get('/index', (req, res) => {
-    let events = eventModel.readEvents();
+    let events = eventsModel.readEvents();
     res.render('index', {
         events : events
     })
 })
 
-app.post('/', eventController.createEvent);
+app.post('/index', eventController.createEvent);
 
 
 
 app.delete('/index/:id', eventController.deleteEvent);
+// For Update/Edit function
+app.put('/events/:id', eventController.updateEvent);
 
 // app.put('/events/:id', eventController.updateEvent);
-
-
-
-
 
 // app.deleteEvent({ id: '1' }, (error, _) => {
 //     if (!error) {

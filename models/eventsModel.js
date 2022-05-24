@@ -7,7 +7,8 @@ import fs from 'fs';
 // import events from 'events';
 
 // Shortcut "Path"
-const dbPath = "./calenderdb.json"
+
+
 
 // const eventModel = {
 //     // Function to get Date and Time -----------------------------
@@ -41,18 +42,18 @@ const dbPath = "./calenderdb.json"
 
 // import fs from "fs";
 
-const dbpath = "./calenderdb.json";
+const dbPath = "./calenderdb.json";
 
-const eventModel = {
+const eventsModel = {
 
     readEvents: function () {
-        return JSON.parse(fs.readFileSync(dbpath, "utf-8"));
+        return JSON.parse(fs.readFileSync(dbPath, "utf-8"));
     },
     getEvent: function (id) {
         return this.readEvents().find((event) => event.id === id);
     },
     saveEvent: function (events) {
-        return fs.writeFileSync(dbpath, JSON.stringify(events));
+        return fs.writeFileSync(dbPath, JSON.stringify(events));
     },
     addEvent: function (title, date) {
         const allEvents = this.readEvents();
@@ -80,42 +81,32 @@ const eventModel = {
         })
         console.log("newArray", newArray);
         this.saveEvent(newArray)
-      
-    
 
-        }
+        },
         
+    updateEvent: function (id, title, date) {
+        // Get all quotes
+        const allEvents = this.getEvents();
+    
+        // if quotes are not defined we return false
+        // to signal that something went wrong
+        if (!allEvents) {
+          return false;
+        }
+    
+        // Update quote specified by id
+        const idx = allEvents.findIndex((event) => event.id === id);
+    
+        if (idx < 0) {
+          return false;
+        }
+        allEvents[idx].title = newTitle;
+        allEvents[idx].date = newDate;
+    
+        // Write new state to db
+        this.saveEvents(allEvents);
+    
+        return true;
+      }
     }
-
-
-    // updateEvent: function (id, title, date) {
-    //     // Get all quotes
-    //     const allEvents = this.getEvents();
-    
-    //     // if quotes are not defined we return false
-    //     // to signal that something went wrong
-    //     if (!allEvents) {
-    //       return false;
-    //     }
-    
-    //     // Update quote specified by id
-    //     const idx = allEvents.findIndex((event) => event.id === id);
-    
-    //     if (idx < 0) {
-    //       return false;
-    //     }
-    
-    //     allEvents[idx].events = newEvent;
-    //     allEvents[idx].title = newTitle;
-    
-    //     // Write new state to db
-    //     this.saveEvents(allEvents);
-    
-    //     return true;
-    //   },
-
-
-
-
-
-export default eventModel;
+export default eventsModel;

@@ -1,6 +1,6 @@
 import express from "express";
 
-import eventModel from "../models/eventsModel.js";
+import eventsModel from "../models/eventsModel.js";
 
 
 export default {
@@ -10,7 +10,7 @@ export default {
 
         console.log(title, date);
 
-        const check = eventModel.addEvent(title, date);
+        const check = eventsModel.addEvent(title, date);
 
         if (!check) {
             res.render("404", {
@@ -19,48 +19,44 @@ export default {
         }
         // skapa ett event som heter event / skapar ett object 
         res.render("index", {
-            events: eventModel.readEvents()
+            events: eventsModel.readEvents()
         });
     },
     getAllEvents: (req, res) => {
         res.render("index", {
-            events: eventModel.readEvents()
+            events: eventsModel.readEvents()
         });
     },
     deleteEvent: (req, res) => {
-        const id = req.body.id;
-        // const id = Number(req.params.id);
+        // const id = req.body.id;
+        const id = Number(req.params.id);
         console.log(id)
-        
-        const check = eventModel.deleteEvent(id); 
+        const check = eventsModel.deleteEvent(id); 
     },
 
-    // updateEvent: (req, res) => {
-    //     const id = Number(req.params.id);
-    //     const event = req.body.event;
-    //     const title = req.body.title;
+    updateEvent: (req, res) => {
+        const id = Number(req.params.id);
+        const event = req.body.event;
+        const title = req.body.title;
         
-    //     if (id < 0) {
-    //         console.log(quoteEvents.errorInvalidId);
-    //         return;
-    //     }
+        if (id < 0) {
+            return false
+        }
 
-    //     if (!event || !title) {
-    //         console.log("Event and Title is not defined", event, title);
-    //         return;
-    //     }
+        if (!event || !title) {
+            console.log("Event and Title is not defined", event, title);
+            return;
+        }
+        const isOK = eventsModel.updateEvent(id, event, title);
 
-    //     const isOK = eventsModel.updateEvent(id, event, title);
+        if (!isOK) {
+            console.log("Event not Updated");
+            return;
+        }
+        console.log("Event Updated");
 
-    //     if (!isOK) {
-    //         console.log("Event not Updated");
-    //         return;
-    //     }
-
-    //     console.log("Event Updated");
-
-    //     res.redirect('/');
-    // },
+        res.redirect('./index');
+    },
     
 
     // today.setDate(today.getDate() - today.getDay() + 1 )
