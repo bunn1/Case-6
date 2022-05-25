@@ -108,13 +108,15 @@
       <ul></ul>
     </div>
 
-    <div id="">
-      <span id="previous">previous</span>
+    <div id="previous">previous
+      
     </div>
 
-    <div>
-      <span id="next">next</span>
+    <div id="next">next
+      
     </div>
+
+   
 
     <form action="/index" method="POST">
       <label for="title">Event</label>
@@ -226,96 +228,186 @@
       .querySelectorAll(".edit-button")
       .forEach((btn) => (btn.onclick = handleEdit));
 
-
     // ett datum kan initieras med något form av ursprung ex strängen 2022-04-30
     let datum = new Date();
-    console.log("date", date);
-    // att lägga till en dag görs med funktionene set date
-    datum.setDate(datum.getDate() + 1)
-    console.log("date", datum);
-    // I javascript startar varje vecka med söndag ( söndag = 0 lördag = 6)
-    // med metoden getDay() får man en siffra som anger dag i veckan
-    let dayOfWeek = datum.getDay();
-    console.log("dayOfWeek", dayOfWeek);
+        console.log("date", date);
+        // att lägga till en dag görs med funktionene set date
+        datum.setDate(datum.getDate() + 1)
+        console.log("date", datum);
+        // I javascript startar varje vecka med söndag ( söndag = 0 lördag = 6)
+        // med metoden getDay() får man en siffra som anger dag i veckan
+        let dayOfWeek = datum.getDay();
+        console.log("dayOfWeek", dayOfWeek);
+        function getWeekDates(datum) {
+            let d = new Date(datum);
+            let dayOfWeek = d.getDay();
+            let preDays = -dayOfWeek;
+            let postDays = 7 + preDays;
+            let dates = [];
+            d.setDate(d.getDate() + preDays);
+            for (let i = preDays; i < postDays; i++) {
+                d.setDate(d.getDate() + 1);
+                let yyyymmdd = d.toLocaleDateString();
+                // En början om man bara vill visa datum utan månad och år
+                // let obj = {date:yyyymmdd, dd:"något..."}
+                dates.push(yyyymmdd);
+            }
+            return dates;
+        }
+        let calendarDates = getWeekDates(datum);
+        console.log("caldendarDates", calendarDates);
+        // en referens till omslutande ul element
+        const calendarElement = document.getElementById("calendar");
+        // SKAPA EN FUNKTION AV DENNA PGA ATT DENNA ANVÄNDS MER ÄN EN GÅNG
+        function showWeekDates(dates) {
+            // radera alla li elements
+            calendarElement.innerText = "";
+            dates.forEach(element => {
+                // skapa ett list elelemt
+                let li = document.createElement("li");
+                li.classList.add("listItem")
+                // ange innehåll
+                li.innerText = element;
+                // lägg till det omslutande ul elementet
+                calendarElement.appendChild(li);
+            });
+        }
+        // skapa en kalender dynamiskt
+        // en itteration över veckans datum
+        showWeekDates(calendarDates);
+        // navigera mellan veckor
+        const previous = document.getElementById("previous");
+        const next = document.getElementById("next");
+        // händelser -klick
+        previous.addEventListener("click", () => {
+            console.log("gå bakåt");
+            // Kontrollera vilken dag som nu är veckans första dag
+            let currentFirstDayOfWeekElement = document.querySelector(".listItem");
+            console.log(currentFirstDayOfWeekElement, "currentFirstDayOfWeekElement");
+            let currentMonday = currentFirstDayOfWeekElement.innerText;
+            console.log("currentMonday", currentMonday);
+            // en vecka tidigare...
+            // skapa först ett äkta datumobjekt av currentMonday
+            let day = new Date(currentMonday);
+            // en vecka tidigare
+            day.setDate(day.getDate() - 7);
+            console.log("day...", day);
+            // ändra innehållet i ul elementet
+            // hämta först veckans datum
+            calendarDates = getWeekDates(day);
+            console.log("caldendarDates", calendarDates);
+            showWeekDates(calendarDates);
+        });
+        next.addEventListener("click", () => {
+            console.log("gå framåt");
+            // Kontrollera vilken dag som nu är veckans första dag
+            let currentFirstDayOfWeekElement = document.querySelector(".listItem");
+            console.log(currentFirstDayOfWeekElement, "currentFirstDayOfWeekElement");
+            let currentMonday = currentFirstDayOfWeekElement.innerText;
+            console.log("currentMonday", currentMonday);
+            // en vecka tidigare...
+            // skapa först ett äkta datumobjekt av currentMonday
+            let day = new Date(currentMonday);
+            // en vecka tidigare
+            day.setDate(day.getDate() + 7);
+            console.log("day...", day);
+            // ändra innehållet i ul elementet
+            // hämta först veckans datum
+            calendarDates = getWeekDates(day);
+            console.log("caldendarDates", calendarDates);
+            showWeekDates(calendarDates);
+        });
 
-    function getWeekDates(datum) {
-      let d = new Date(datum);
-      let dayOfWeek = d.getDay();
-      let preDays = -dayOfWeek;
-      let postDays = 7 + preDays;
-      let dates = [];
-      d.setDate(d.getDate() + preDays);
-      for (let i = preDays; i < postDays; i++) {
-        d.setDate(d.getDate() + 1);
-        let yyyymmdd = d.toLocaleDateString();
-        // En början om man bara vill visa datum utan månad och år
-        // let obj = {date:yyyymmdd, dd:"något..."}
-        dates.push(yyyymmdd);
-      }
-      return dates;
-    }
-    let calendarDates = getWeekDates(datum);
-    console.log("caldendarDates", calendarDates);
-    // en referens till omslutande ul element
-    const calendarElement = document.getElementById("calendar");
-    // SKAPA EN FUNKTION AV DENNA PGA ATT DENNA ANVÄNDS MER ÄN EN GÅNG
-    function showWeekDates(dates) {
-      // radera alla li elements
-      calendarElement.innerText = "";
-      dates.forEach(element => {
-        // skapa ett list elelemt
-        let li = document.createElement("li");
-        // ange innehåll
-        li.innerText = element;
-        // lägg till det omslutande ul elementet
-        calendarElement.appendChild(li);
-      });
-    }
-    // skapa en kalender dynamiskt
-    // en itteration över veckans datum
-    showWeekDates(calendarDates);
-    // navigera mellan veckor
-    const previous = document.getElementById("previous");
-    const next = document.getElementById("next");
-    // händelser -klick
-    previous.addEventListener("click", () => {
-      console.log("gå bakåt");
-      // Kontrollera vilken dag som nu är veckans första dag
-      let currentFirstDayOfWeekElement = document.querySelector("li");
-      console.log(currentFirstDayOfWeekElement, "currentFirstDayOfWeekElement");
-      let currentMonday = currentFirstDayOfWeekElement.innerText;
-      console.log("currentMonday", currentMonday);
-      // en vecka tidigare...
-      // skapa först ett äkta datumobjekt av currentMonday
-      let day = new Date(currentMonday);
-      // en vecka tidigare
-      day.setDate(day.getDate() - 7);
-      console.log("day...", day);
-      // ändra innehållet i ul elementet
-      // hämta först veckans datum
-      calendarDates = getWeekDates(day);
-      console.log("caldendarDates", calendarDates);
-      showWeekDates(calendarDates);
-    });
-    next.addEventListener("click", () => {
-      console.log("gå framåt");
-      // Kontrollera vilken dag som nu är veckans första dag
-      let currentFirstDayOfWeekElement = document.querySelector("li");
-      console.log(currentFirstDayOfWeekElement, "currentFirstDayOfWeekElement");
-      let currentMonday = currentFirstDayOfWeekElement.innerText;
-      console.log("currentMonday", currentMonday);
-      // en vecka tidigare...
-      // skapa först ett äkta datumobjekt av currentMonday
-      let day = new Date(currentMonday);
-      // en vecka tidigare
-      day.setDate(day.getDate() + 7);
-      console.log("day...", day);
-      // ändra innehållet i ul elementet
-      // hämta först veckans datum
-      calendarDates = getWeekDates(day);
-      console.log("caldendarDates", calendarDates);
-      showWeekDates(calendarDates);
-    });
+
+    // // ett datum kan initieras med något form av ursprung ex strängen 2022-04-30
+    // let datum = new Date();
+    // console.log("date", date);
+    // // att lägga till en dag görs med funktionene set date
+    // datum.setDate(datum.getDate() + 1)
+    // console.log("date", datum);
+    // // I javascript startar varje vecka med söndag ( söndag = 0 lördag = 6)
+    // // med metoden getDay() får man en siffra som anger dag i veckan
+    // let dayOfWeek = datum.getDay();
+    // console.log("dayOfWeek", dayOfWeek);
+
+    // function getWeekDates(datum) {
+    //   let d = new Date(datum);
+    //   let dayOfWeek = d.getDay();
+    //   let preDays = -dayOfWeek;
+    //   let postDays = 7 + preDays;
+    //   let dates = [];
+    //   d.setDate(d.getDate() + preDays);
+    //   for (let i = preDays; i < postDays; i++) {
+    //     d.setDate(d.getDate() + 1);
+    //     let yyyymmdd = d.toLocaleDateString();
+    //     // En början om man bara vill visa datum utan månad och år
+    //     // let obj = {date:yyyymmdd, dd:"något..."}
+    //     dates.push(yyyymmdd);
+    //   }
+    //   return dates;
+    // }
+    // let calendarDates = getWeekDates(datum);
+    // console.log("caldendarDates", calendarDates);
+    // // en referens till omslutande ul element
+    // const calendarElement = document.getElementById("calendar");
+    // // SKAPA EN FUNKTION AV DENNA PGA ATT DENNA ANVÄNDS MER ÄN EN GÅNG
+    // function showWeekDates(dates) {
+    //   // radera alla li elements
+    //   calendarElement.innerText = "";
+    //   dates.forEach(element => {
+    //     // skapa ett list elelemt
+    //     let li = document.createElement("li");
+    //     // ange innehåll
+    //     li.innerText = element;
+    //     // lägg till det omslutande ul elementet
+    //     calendarElement.appendChild(li);
+    //   });
+    // }
+    // // skapa en kalender dynamiskt
+    // // en itteration över veckans datum
+    // showWeekDates(calendarDates);
+    // // navigera mellan veckor
+    // const previous = document.getElementById("previous");
+    // const next = document.getElementById("next");
+    // // händelser -klick
+    // previous.addEventListener("click", () => {
+    //   console.log("gå bakåt");
+    //   // Kontrollera vilken dag som nu är veckans första dag
+    //   let currentFirstDayOfWeekElement = document.querySelector("li");
+    //   console.log(currentFirstDayOfWeekElement, "currentFirstDayOfWeekElement");
+    //   let currentMonday = currentFirstDayOfWeekElement.innerText;
+    //   console.log("currentMonday", currentMonday);
+    //   // en vecka tidigare...
+    //   // skapa först ett äkta datumobjekt av currentMonday
+    //   let day = new Date(currentMonday);
+    //   // en vecka tidigare
+    //   day.setDate(day.getDate() - 7);
+    //   console.log("day...", day);
+    //   // ändra innehållet i ul elementet
+    //   // hämta först veckans datum
+    //   calendarDates = getWeekDates(day);
+    //   console.log("caldendarDates", calendarDates);
+    //   showWeekDates(calendarDates);
+    // });
+    // next.addEventListener("click", () => {
+    //   console.log("gå framåt");
+    //   // Kontrollera vilken dag som nu är veckans första dag
+    //   let currentFirstDayOfWeekElement = document.querySelector("li");
+    //   console.log(currentFirstDayOfWeekElement, "currentFirstDayOfWeekElement");
+    //   let currentMonday = currentFirstDayOfWeekElement.innerText;
+    //   console.log("currentMonday", currentMonday);
+    //   // en vecka tidigare...
+    //   // skapa först ett äkta datumobjekt av currentMonday
+    //   let day = new Date(currentMonday);
+    //   // en vecka tidigare
+    //   day.setDate(day.getDate() + 7);
+    //   console.log("day...", day);
+    //   // ändra innehållet i ul elementet
+    //   // hämta först veckans datum
+    //   calendarDates = getWeekDates(day);
+    //   console.log("caldendarDates", calendarDates);
+    //   showWeekDates(calendarDates);
+    // });
 
 
 

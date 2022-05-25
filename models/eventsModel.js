@@ -77,23 +77,24 @@ const eventsModel = {
     deleteEvent: function (id) {
         const allEvents = this.readEvents();
         console.log("Delete Event Was Called ")
-        let newArray = allEvents.filter(function (element) {   
-            return element.id !== id;
-        })
-        console.log("newArray", newArray);
-        this.saveEvent(newArray)
+        // let newArray = allEvents.filter(function (element) {   
+        //     return element.id !== id;
+        // })
+        let array1 = allEvents.filter((event) => event.id !== id);
+        console.log("array1", array1);
+        this.saveEvent(array1)
 
         },
         
     updateEvent: function (id, newTitle, newDate) {
         // Get all quotes
-        const allEvents = this.getEvents();
+        const allEvents = this.readEvents();
     
         // if quotes are not defined we return false
         // to signal that something went wrong
-        if (!allEvents) {
-          return false;
-        }
+        // if (!allEvents) {
+        //   return false;
+        // }
     
         // Update quote specified by id
         const idx = allEvents.findIndex((event) => event.id === id);
@@ -107,7 +108,7 @@ const eventsModel = {
         allEvents[idx].date = newDate;
     
         // Write new state to db
-        this.saveEvents(allEvents);
+        this.saveEvent(allEvents);
     
         return true;
       }

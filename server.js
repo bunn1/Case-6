@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 
 // Handle form Post
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.json());
 
 // Must have so Css works
 app.use(express.static("."));

@@ -36,24 +36,24 @@ export default {
 
     updateEvent: (req, res) => {
         const id = Number(req.params.id);
-        const event = req.body.event;
         const title = req.body.title;
-        
+        const date = req.body.date;
+        console.log("ControllerEvent Was Called",req.body)
         if (id < 0) {
             return false
         }
 
-        if (!event || !title) {
-            console.log("Event and Title is not defined", event, title);
+        if (!title || !date) {
+            console.log("Date and Title is not defined", title, date);
             return;
         }
-        const isOK = eventsModel.updateEvent(id, event, title);
+        const isOK = eventsModel.updateEvent(id, title, date);
 
         if (!isOK) {
-            console.log("Event not Updated");
+            console.log("Title and Date not Updated");
             return;
         }
-        console.log("Event Updated");
+        console.log("Title Updated");
 
         res.redirect('./index');
     },
