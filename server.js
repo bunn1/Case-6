@@ -59,6 +59,13 @@ app.put('/events/:id', eventController.updateEvent);
 //       console.error(error)
 //     }
 //   })
+// getAllPosts().then(response => {
+//     console.log(response);
+// }).catch(e => {
+//     console.log(e);
+// })
+
+
 
 // use route modules
 // import routeStart from './routes/start.js';

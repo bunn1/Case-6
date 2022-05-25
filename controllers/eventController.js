@@ -57,6 +57,8 @@ export default {
 
         res.redirect('./index');
     },
+
+    
     
 
     // today.setDate(today.getDate() - today.getDay() + 1 )
