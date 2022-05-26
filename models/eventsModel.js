@@ -9,8 +9,6 @@ import fs from 'fs';
 // Shortcut "Path"
 const data= "./calenderdb.json"
 
-
-
 // const eventModel = {
 //     // Function to get Date and Time -----------------------------
 //     getAllEvents: function () {
@@ -39,7 +37,6 @@ const data= "./calenderdb.json"
 //     }
 // }
 // export default eventModel;
-
 
 // import fs from "fs";
 
@@ -113,7 +110,5 @@ const eventsModel = {
         return true;
       }
     }
-
-
 
 export default eventsModel;

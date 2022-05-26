@@ -44,7 +44,7 @@ export default {
         }
 
         if (!title || !date) {
-            console.log("Date and Title is not defined", title, date);
+            console.log("Title and Date is not defined", title, date);
             return;
         }
         const isOK = eventsModel.updateEvent(id, title, date);
