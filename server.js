@@ -41,7 +41,7 @@ app.get('/index', (req, res) => {
     })
 })
 
-app.post('/index', eventController.createEvent);
+app.post('/eventSave', eventController.createEvent);
 
 
 // For Delete

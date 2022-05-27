@@ -4,12 +4,14 @@ import eventsModel from "../models/eventsModel.js";
 
 
 export default {
+
+    // sätter title och date
     createEvent: (req, res) => {
         const title = req.body.title;
         const date = req.body.date;
 
         console.log(title, date);
-
+// kollar om det gick att ladda
         const check = eventsModel.addEvent(title, date);
 
         if (!check) {
@@ -18,9 +20,8 @@ export default {
             });
         }
         // skapa ett event som heter event / skapar ett object 
-        res.render("index", {
-            events: eventsModel.readEvents()
-        });
+        res.redirect("/index")
+       
     },
     getAllEvents: (req, res) => {
         res.render("index", {
@@ -32,6 +33,13 @@ export default {
         const id = Number(req.params.id);
         console.log(id)
         const check = eventsModel.deleteEvent(id); 
+
+        if (!check) {
+            res.render("404", {
+                message: "Could not delete"
+            });
+        }
+        res.redirect("/index")
     },
 
     updateEvent: (req, res) => {

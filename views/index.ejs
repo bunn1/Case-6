@@ -118,7 +118,7 @@
 
 
 
-    <form action="/index" method="POST">
+    <form action="/eventSave" method="POST">
       <label for="title">Event</label>
       <input type="text" name="title" id="title">
       <label for="date">Date And Time</label>
@@ -170,16 +170,18 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <script>
+
+    // loggar id och event och kör en fetch till eventDelete
     async function deleteEvent(id) {
       console.log("Hello deleteEvent", id)
       const response = await fetch(`/index/${id}`, {
         method: "delete"
       });
 
-      if (response.redirected) {
-        window.location.href = response.url;
+      // if (response.redirected) {
+      //   window.location.href = response.url;
 
-      }
+      // }
 
     }
     async function handleEdit(evt) {
