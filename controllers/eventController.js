@@ -1,4 +1,3 @@
-import express from "express";
 
 import eventsModel from "../models/eventsModel.js";
 
@@ -31,14 +30,25 @@ export default {
     deleteEvent: (req, res) => {
         // const id = req.body.id;
         const id = Number(req.params.id);
+
+        if (id < 0) {
+            console.log("error") 
+                 return
+         }
+
         console.log(id)
+        const beRemoved = eventsModel.getEvent(id) // Ny Rad ----------------------------------------
         const check = eventsModel.deleteEvent(id); 
 
-        if (!check) {
-            res.render("404", {
-                message: "Could not delete"
-            });
-        }
+        // if (!check) {
+        //     res.render("404", {
+        //         message: "Could not delete"
+        //     });
+        // }
+      
+        
+
+        // console.log("test")
         res.redirect("/index")
     },
 
@@ -46,7 +56,9 @@ export default {
         const id = Number(req.params.id);
         const title = req.body.title;
         const date = req.body.date;
-        console.log("ControllerEvent Was Called",req.body)
+        const check = eventsModel.updateEvent(id, title, date); // Ny Rad ----------------------------------
+
+        console.log("ControllerEvent Was Called",req.body, id)
         if (id < 0) {
             return false
         }

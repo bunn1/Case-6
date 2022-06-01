@@ -70,45 +70,77 @@ const eventsModel = {
 
         return true;
     },
-    // Radera eventet
-    deleteEvent: function (id) {
-        const allEvents = this.readEvents();
-        console.log("Delete Event Was Called ")
-        // let newArray = allEvents.filter(function (element) {   
-        //     return element.id !== id;
-        // })
-        let array1 = allEvents.filter((event) => event.id !== id);
-        console.log("array1", array1);
-        this.saveEvent(array1)
+    // Delete Event Gamla koden ----------------------------------------------------------------
+    // deleteEvent: function (id) {
+    //     const allEvents = this.readEvents();
+    //     console.log("Delete Event Was Called ")
+    //     // let newArray = allEvents.filter(function (element) {   
+    //     //     return element.id !== id;
+    //     // })
+    //     let array1 = allEvents.filter((event) => event.id !== id);
+    //     console.log("array1", array1);
+    //     this.saveEvent(array1)
 
-        },
-        
-    updateEvent: function (id, newTitle, newDate) {
-        // Get all quotes
+    //     },
+
+    deleteEvent: function (id) { // Ny Kod ---------------------------------------------------------
         const allEvents = this.readEvents();
-    
-        // if quotes are not defined we return false
-        // to signal that something went wrong
-        // if (!allEvents) {
-        //   return false;
-        // }
-    
-        // Update quote specified by id
-        const idx = allEvents.findIndex((event) => event.id === id);
-    
-        if (idx < 0) {
-          return false;
+
+        if (!allEvents) {
+            return false;
         }
 
-        // Här sker uppdateringen
-        allEvents[idx].title = newTitle;
-        allEvents[idx].date = newDate;
+        const filteredEvents = allEvents.filter((event) => event.id !== id);
+
+        this.saveEvent(filteredEvents);
+
+        return true;
+    },
+        
+    // updateEvent: function (id, newTitle, newDate) { Gammal kod ---------------------------------------
+    //     // Get all quotes
+    //     const allEvents = this.readEvents();
     
+    //     // if quotes are not defined we return false
+    //     // to signal that something went wrong
+    //     // if (!allEvents) {
+    //     //   return false;
+    //     // }
+    
+    //     // Update quote specified by id
+    //     const idx = allEvents.findIndex((event) => event.id === id);
+    
+    //     if (idx < 0) {
+    //       return false;
+    //     }
+
+    //     // Här sker uppdateringen
+    //     allEvents[idx].title = newTitle;
+    //     allEvents[idx].date = newDate;
+    
+    //     // Write new state to db
+    //     this.saveEvent(allEvents);
+    
+    //     return true;
+    //   }
+    // }
+
+    updateEvent: function (id, newTitle, newDate) { // Ny Kod -----------------------------------------
+        const allEvents = this.readEvents();
+        const leg = allEvents.findIndex((event) => event.id === id);
+
+        if (!leg < 0) {
+            return false;
+        }
+
+        allEvents[id].title = newTitle;
+        allEvents[id].date = newDate;
+
         // Write new state to db
         this.saveEvent(allEvents);
-    
+
         return true;
-      }
     }
+}
 
 export default eventsModel;

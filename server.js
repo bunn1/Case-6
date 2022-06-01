@@ -43,12 +43,17 @@ app.get('/index', (req, res) => {
 
 app.post('/eventSave', eventController.createEvent);
 
+// route to eventDelete
+// app.delete('/deleteEvent/:id', eventController.deleteEvent); // Gammal kod --------------------------------
 
-// For Delete
-app.delete('/index/:id', eventController.deleteEvent);
+app.delete('/index/:id', eventController.deleteEvent); // Ny kod -------------------------------------
 
-// For Update/Edit function
-app.put('/events/:id', eventController.updateEvent);
+// router.delete('/deleteEvent/:id', eventController.deleteEvent);
+
+// route to eventUpdate
+app.put('/index/:id', eventController.updateEvent); // Gammal kod ------------------------------
+
+// app.put('/updateEvent/:id', eventController.updateEvent); // Ny kod ----------------------------------------
 
 // app.put('/events/:id', eventController.updateEvent);
 
