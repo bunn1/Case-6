@@ -39,3 +39,14 @@ function weekDates(date) {
     }
     return dates;
 }
+
+const calendarWrapper = document.getElementById("calendarContainer");
+
+
+
+const changeWeek = document.getElementById("changeWeek");
+
+changeWeek.addEventListener("click",() => {
+    let first =
+
+})

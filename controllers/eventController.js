@@ -24,7 +24,7 @@ export default {
     },
     getAllEvents: (req, res) => {
         res.render("index", {
-            events: eventsModel.readEvents()
+            events: eventsModel.getAll()
         });
     },
     deleteEvent: (req, res) => {
@@ -37,7 +37,7 @@ export default {
          }
 
         console.log(id)
-        const beRemoved = eventsModel.getEvent(id) // Ny Rad ----------------------------------------
+      
         const check = eventsModel.deleteEvent(id); 
 
         // if (!check) {
@@ -45,10 +45,6 @@ export default {
         //         message: "Could not delete"
         //     });
         // }
-      
-        
-
-        // console.log("test")
         res.redirect("/index")
     },
 
@@ -56,7 +52,7 @@ export default {
         const id = Number(req.params.id);
         const title = req.body.title;
         const date = req.body.date;
-        const check = eventsModel.updateEvent(id, title, date); // Ny Rad ----------------------------------
+        // const check = eventsModel.updateEvent(id, title, date); 
 
         console.log("ControllerEvent Was Called",req.body, id)
         if (id < 0) {
@@ -75,7 +71,7 @@ export default {
         }
         console.log("Title Updated");
 
-        res.redirect('./index');
+        res.redirect('/index');
     },
 
     

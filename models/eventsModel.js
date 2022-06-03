@@ -44,17 +44,17 @@ const dbPath = "./calenderdb.json";
 
 const eventsModel = {
 
-    readEvents: function () {
+    getAll: function () {
         return JSON.parse(fs.readFileSync(dbPath, "utf-8"));
     },
     getEvent: function (id) {
-        return this.readEvents().find((event) => event.id === id);
+        return this.getAll().find((event) => event.id === id);
     },
     saveEvent: function (events) {
         return fs.writeFileSync(dbPath, JSON.stringify(events));
     },
     addEvent: function (title, date) {
-        const allEvents = this.readEvents();
+        const allEvents = this.getAll();
         const lastEvent = allEvents[allEvents.length - 1];
         const newId = (lastEvent ?.id || 0) + 1;
 
@@ -70,21 +70,9 @@ const eventsModel = {
 
         return true;
     },
-    // Delete Event Gamla koden ----------------------------------------------------------------
-    // deleteEvent: function (id) {
-    //     const allEvents = this.readEvents();
-    //     console.log("Delete Event Was Called ")
-    //     // let newArray = allEvents.filter(function (element) {   
-    //     //     return element.id !== id;
-    //     // })
-    //     let array1 = allEvents.filter((event) => event.id !== id);
-    //     console.log("array1", array1);
-    //     this.saveEvent(array1)
-
-    //     },
 
     deleteEvent: function (id) { // Ny Kod ---------------------------------------------------------
-        const allEvents = this.readEvents();
+        const allEvents = this.getAll();
 
         if (!allEvents) {
             return false;
@@ -125,16 +113,16 @@ const eventsModel = {
     //   }
     // }
 
-    updateEvent: function (id, newTitle, newDate) { // Ny Kod -----------------------------------------
-        const allEvents = this.readEvents();
+    updateEvent: function (id, newTitle, newDate) { 
+        const allEvents = this.getAll();
         const leg = allEvents.findIndex((event) => event.id === id);
 
         if (!leg < 0) {
             return false;
         }
 
-        allEvents[id].title = newTitle;
-        allEvents[id].date = newDate;
+        allEvents[leg].title = newTitle;
+        allEvents[leg].date = newDate;
 
         // Write new state to db
         this.saveEvent(allEvents);
