@@ -19,11 +19,12 @@
   <!-- Header -->
   <%- include('partials/header.ejs') %>
 
-
   <% events.forEach(event => { %>
   <h2><%= event.title %></h2>
   <p><%= event.date %> </p>
   <% }) %>
+
+  </div>
 
 
   <div id="changeWeek">
@@ -34,89 +35,17 @@
 
   <div class="parent">
 
-    <!-- <div class="oneDay">
-      <h2>MONDAY</h2>
-      <ul class="day-card">
-        <p> Title </p>
-        <li class="event-card">
-
-        </li>
-      </ul>
-    </div>
-
-    <div class="oneDay">
-      <h2>TUESDAY</h2>
-      <ul class="day-card active">
-        <p> Title </p>
-        <li class="event-card">
-
-        </li>
-      </ul>
-    </div>
-
-    <div class="oneDay">
-      <h2>WEDNESDAY</h2>
-      <ul class="day-card">
-        <p> Title </p>
-        <li class="event-card">
-
-        </li>
-      </ul>
-    </div>
-
-    <div class="oneDay">
-      <h2>THURSDAY</h2>
-      <ul class="day-card">
-        <p> Title </p>
-        <li class="event-card">
-
-        </li>
-      </ul>
-    </div>
-
-    <div class="oneDay">
-      <h2>FRIDAY</h2>
-      <ul class="day-card">
-        <p> Title </p>
-        <li class="event-card">
-
-        </li>
-      </ul>
-    </div>
-
-    <div class="oneDay">
-      <h2>SATURDAY</h2>
-      <ul class="day-card">
-        <p> Title </p>
-        <li class="event-card">
-
-        </li>
-      </ul>
-    </div>
-
-    <div class="oneDay">
-      <h2>SUNDAY</h2>
-      <ul class="day-card">
-        <p> Title </p>
-        <li class="event-card">
-
-      </ul>
-    </div> -->
-
-
     <div id="calendar">
       <ul></ul>
     </div>
 
     <div id="previous">previous
-
+      <ion-icon name="chevron-back-outline"></ion-icon>
     </div>
 
     <div id="next">next
-
+      <ion-icon name="chevron-forward-outline"></ion-icon>
     </div>
-
-
 
     <form action="/eventSave" method="POST">
       <label for="title">Event</label>
@@ -132,33 +61,14 @@
       <p class="event-title"><%- ele.title %></p>
       <p class="event-date"><%- ele.date %></p>
       <button onclick="deleteEvent(<%= ele.id %>)">Delete</button>
-      <button class="edit-button" id="<%= ele.id %>" data-id="<%= ele.id %>">Edit</button>
-      <% }) %>
+      <button class="edit-button" data-id="<%=ele.id %>" id="<%=ele.id%>">Edit</button>
+
     </div>
+    <% }) %>
 
   </div>
 
   </div>
-
-
-  <!-- function getWeekDates(date) {
-    let d = new Date(date);
-    let dayOfWeek = d.getDay();
-    let preDays = -dayOfWeek;
-    let postDays = 7 + preDays;
-    
-    //array av datum som är i början
-    let dates = [];
-    d.setDate(d.getDate() + preDays);
-    for (let i = preDays; i < postDays; i++) {
-    d.setDate(d.getDate() + 1);
-    let yyyymmdd = d.toLocaleDateString();
-    dates.push(yyyymmdd);
-    }
-    
-    return dates;
-    } -->
-
 
   <!-- Footer -->
   <%- include('partials/footer.ejs') %>
@@ -168,7 +78,6 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <script>
-
     // loggar id och event och kör en fetch till eventDelete
     async function deleteEvent(id) {
       console.log("Hello deleteEvent", id)
@@ -178,16 +87,14 @@
 
       if (response.redirected) {
         window.location.href = response.url;
-
       }
-
     }
     async function editEvent(evt) {
       const container = evt.target.parentElement;
       const id = container.querySelector(".edit-button").getAttribute("data-id"); // data-id -> dataset.id
       const title = container.querySelector(".event-title");
       const date = container.querySelector(".event-date");
-      console.log("id: ", id );
+      console.log("id: ", id);
       // if not editable make them editable
       if (!title.isContentEditable && !date.isContentEditable) {
         title.contentEditable = true;
@@ -207,7 +114,7 @@
         };
         console.log(`/events/${id}`)
 
-        const response =  fetch(`/events/${id}`, {
+        const response = fetch(`/events/${id}`, {
           method: "put",
           body: JSON.stringify(newEvent),
           headers: {
@@ -317,9 +224,6 @@
       console.log("caldendarDates", calendarDates);
       showWeekDates(calendarDates);
     });
-
-
-    
   </script>
 
 
