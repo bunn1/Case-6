@@ -32,6 +32,8 @@ app.get('/index', (req, res) => {
     })
 })
 
+app.get('/index/:date', eventController.weekEvents);
+
 app.post('/eventSave', eventController.createEvent);
 // route to eventDelete
 // app.delete('/deleteEvent/:id', eventController.deleteEvent); // Gammal kod --------------------------------

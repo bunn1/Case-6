@@ -7,7 +7,7 @@ import fs from 'fs';
 // import events from 'events';
 
 // Shortcut "Path"
-const data= "./calenderdb.json"
+// const data= "./calenderdb.json"
 
 // const eventModel = {
 //     // Function to get Date and Time -----------------------------
@@ -77,7 +77,6 @@ const eventsModel = {
         if (!allEvents) {
             return false;
         }
-
         const filteredEvents = allEvents.filter((event) => event.id !== id);
 
         this.saveEvent(filteredEvents);
