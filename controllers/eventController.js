@@ -56,10 +56,10 @@ import eventsModel from "../models/eventsModel.js";
                  return
          }
 
-        console.log(id)
-      
+        const toBeRemoved = eventsModel.getEvent(id)
         const check = eventsModel.deleteEvent(id); 
 
+        console.log(toBeRemoved);
         // if (!check) {
         //     res.render("404", {
         //         message: "Could not delete"
@@ -68,7 +68,7 @@ import eventsModel from "../models/eventsModel.js";
         res.redirect("/index")
     },
 
-    updateEvent: (req, res) => {
+    editEvent: (req, res) => {
         const id = Number(req.params.id);
         const title = req.body.title;
         const date = req.body.date;
@@ -82,12 +82,12 @@ import eventsModel from "../models/eventsModel.js";
         //     console.log("Title and Date is not defined", title, date);
         //     return;
         // }
-        const isOK = eventsModel.updateEvent(id, title, date);
+        const check = eventsModel.editEvent(id, title, date);
 
-        if (!isOK) {
-            console.log("Title and Date not Updated");
-            return;
-        }
+        // if (!isOK) {
+        //     console.log("Title and Date not Edited");
+        //     return;
+        // }
         // console.log("Title Updated");
 
         res.redirect('/index');

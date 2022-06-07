@@ -32,15 +32,27 @@ app.get('/index', (req, res) => {
     })
 })
 
-app.get('/index/:date', eventController.weekEvents);
+// app.get('/index/:date', eventController.weekEvents);
+
+// Route request
+app.get('/', (req, res) => {
+    res.render('firstPage');
+});
+
+app.get('/firstPage', (req, res) => {
+    res.render('firstPage');
+});
+
+app.get('calendar')
 
 app.post('/eventSave', eventController.createEvent);
 // route to eventDelete
 // app.delete('/deleteEvent/:id', eventController.deleteEvent); // Gammal kod --------------------------------
 app.delete('/index/:id', eventController.deleteEvent); // Ny kod -------------------------------------
 // router.delete('/deleteEvent/:id', eventController.deleteEvent);
+
 // route to eventUpdate
-app.put('/index/:id', eventController.updateEvent); // Gammal kod ------------------------------
+// app.put('/index/:id', eventController.updateEvent); // Gammal kod ------------------------------
 
 app.use(express.static('index'));
 app.listen(port, () => {
@@ -48,7 +60,7 @@ app.listen(port, () => {
     });
 
  
-// app.put('/updateEvent/:id', eventController.updateEvent); // Ny kod ----------------------------------------
+app.put('/events/:id', eventController.editEvent); // Ny kod ----------------------------------------
 
 // app.put('/events/:id', eventController.updateEvent);
 

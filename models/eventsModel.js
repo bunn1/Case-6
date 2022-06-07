@@ -51,7 +51,11 @@ const eventsModel = {
         return this.getAll().find((event) => event.id === id);
     },
     saveEvent: function (events) {
-        return fs.writeFileSync(dbPath, JSON.stringify(events));
+        try {
+            fs.writeFileSync(dbPath, JSON.stringify(events));
+        } catch (error) {
+            console.log("error", error);
+        }
     },
     addEvent: function (title, date) {
         const allEvents = this.getAll();
@@ -83,20 +87,20 @@ const eventsModel = {
 
         return true;
     },
-        
+
     // updateEvent: function (id, newTitle, newDate) { Gammal kod ---------------------------------------
     //     // Get all quotes
     //     const allEvents = this.readEvents();
-    
+
     //     // if quotes are not defined we return false
     //     // to signal that something went wrong
     //     // if (!allEvents) {
     //     //   return false;
     //     // }
-    
+
     //     // Update quote specified by id
     //     const idx = allEvents.findIndex((event) => event.id === id);
-    
+
     //     if (idx < 0) {
     //       return false;
     //     }
@@ -104,15 +108,15 @@ const eventsModel = {
     //     // Här sker uppdateringen
     //     allEvents[idx].title = newTitle;
     //     allEvents[idx].date = newDate;
-    
+
     //     // Write new state to db
     //     this.saveEvent(allEvents);
-    
+
     //     return true;
     //   }
     // }
 
-    updateEvent: function (id, newTitle, newDate) { 
+    editEvent: function (id, newTitle, newDate) {
         const allEvents = this.getAll();
         const leg = allEvents.findIndex((event) => event.id === id);
 
