@@ -60,7 +60,7 @@ app.listen(port, () => {
     });
 
  
-app.put('/events/:id', eventController.editEvent); // Ny kod ----------------------------------------
+app.post('/events/:id', eventController.editEvent); // Ny kod ----------------------------------------
 
 // app.put('/events/:id', eventController.updateEvent);
 
