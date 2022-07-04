@@ -47,7 +47,7 @@
       <ion-icon name="chevron-forward-outline"></ion-icon>
     </div>
 
-    <form action="/eventSave" method="POST">
+    <form action="/calendar" method="POST">
       <label for="title">Event</label>
       <input type="text" name="title" id="title">
       <label for="date">Date And Time</label>
@@ -78,178 +78,223 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <script>
- // loggar id och event och kör en fetch till eventDelete
- async function deleteEvent(id) {
-    console.log("Hello deleteEvent", id)
-    const response = await fetch(`/index/${id}`, {
-      method: "delete"
-    });
+    // Skapar tom array som kan uppdateras
+    let datum = new Date();
+    let savedEvents = [];
+    let calendarDates = getWeekDates(datum);
+    let dayOfWeek = datum.getDay();
+    // Skapar tom array som kan uppdateras     
+    console.log("hej");
 
-    if (response.redirected) {
-      window.location.href = response.url;
-    }
-  }
-  async function editEvent(evt) {
 
-    const container = evt.target.parentElement;
-    const id = container.querySelector(".edit-button").getAttribute("data-id"); // data-id -> dataset.id
-    const title = container.querySelector(".event-title");
-    const date = container.querySelector(".event-date");
-    console.log("id: ", id);
 
-    // if not editable make them editable
-    if (!title.isContentEditable && !date.isContentEditable) {
-      title.contentEditable = true;
-      date.contentEditable = true;
-      // clicking the same button should save the changes
-      evt.target.innerText = "Save";
-    } else {
-      // Second time clicked it should save changes
-      // reset element to be non editable
-      title.contentEditable = false;
-      date.contentEditable = false;
-      evt.target.innerText = "Edit";
-      // Look at values of titleEl and dateEl and submit new quote
-      const newEvent = {
-        title: title.innerText,
-        date: date.innerText,
-      };
-      console.log(`/events/${id}`)
-
-      const response = fetch(`/events/${id}`, {
-        method: "put",
-        body: JSON.stringify(newEvent),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      // }).then(response => {
-      //   console.log(response);
-      // }).catch(e => {
-      //   console.log(e);
+    // loggar id och event och kör en fetch till eventDelete
+    async function deleteEvent(id) {
+      console.log("Hello deleteEvent", id)
+      const response = await fetch(`/index/${id}`, {
+        method: "delete"
       });
 
-      // Check if there is a redirect to follow the new url
       if (response.redirected) {
         window.location.href = response.url;
       }
     }
-  }
-  document.querySelectorAll(".edit-button").forEach((btn) => (btn.onclick = editEvent));
+    async function editEvent(evt) {
 
-  // ett datum kan initieras med något form av ursprung ex strängen 2022-04-30
-  let datum = new Date();
-  console.log("date", date);
-  // att lägga till en dag görs med funktionen set date
-  datum.setDate(datum.getDate() + 1)
-  console.log("date", datum);
-  // I javascript startar varje vecka med söndag ( söndag = 0 lördag = 6)
-  // med metoden getDay() får man en siffra som anger dag i veckan
-  let dayOfWeek = datum.getDay();
-  console.log("dayOfWeek", dayOfWeek);
+      const container = evt.target.parentElement;
+      const id = container.querySelector(".edit-button").getAttribute("data-id"); // data-id -> dataset.id
+      const title = container.querySelector(".event-title");
+      const date = container.querySelector(".event-date");
+      console.log("id: ", id);
 
-  function getWeekDates(datum) {
-    let d = new Date(datum);
-    let dayOfWeek = d.getDay();
-    let preDays = -dayOfWeek;
-    let postDays = 7 + preDays;
-    let dates = [];
-    d.setDate(d.getDate() + preDays);
-    for (let i = preDays; i < postDays; i++) {
-      d.setDate(d.getDate() + 1);
-      let yyyymmdd = d.toLocaleDateString();
-      // En början om man bara vill visa datum utan månad och år
-      // let obj = {date:yyyymmdd, dd:"något..."}
-      dates.push(yyyymmdd);
+      // if not editable make them editable
+      if (!title.isContentEditable && !date.isContentEditable) {
+        title.contentEditable = true;
+        date.contentEditable = true;
+        // clicking the same button should save the changes
+        evt.target.innerText = "Save";
+      } else {
+        // Second time clicked it should save changes
+        // reset element to be non editable
+        title.contentEditable = false;
+        date.contentEditable = false;
+        evt.target.innerText = "Edit";
+        // Look at values of titleEl and dateEl and submit new quote
+        const newEvent = {
+          title: title.innerText,
+          date: date.innerText,
+        };
+        console.log(`/events/${id}`)
+
+        const response = fetch(`/events/${id}`, {
+          method: "PUT",
+          body: JSON.stringify(newEvent),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // }).then(response => {
+          //   console.log(response);
+          // }).catch(e => {
+          //   console.log(e);
+        });
+
+        // Check if there is a redirect to follow the new url
+        if (response.redirected) {
+          window.location.href = response.url;
+        }
+      }
     }
-    return dates;
-  }
-  let calendarDates = getWeekDates(datum);
-  console.log("caldendarDates", calendarDates);
-  // en referens till omslutande ul element
-  const calendarElement = document.getElementById("calendar");
-  // SKAPA EN FUNKTION AV DENNA PGA ATT DENNA ANVÄNDS MER ÄN EN GÅNG
-  function showWeekDates(dates) {
-    // radera alla li elements
-    calendarElement.innerText = "";
-    dates.forEach(element => {
-      // skapa ett list elelemt
-      let li = document.createElement("li");
-      li.classList.add("listItem")
-      // ange innehåll
-      li.innerText = element;
-      // lägg till det omslutande ul elementet
-      calendarElement.appendChild(li);
+    document.querySelectorAll(".edit-button").forEach((btn) => (btn.onclick = editEvent));
+
+    // ett datum kan initieras med något form av ursprung ex strängen 2022-04-30
+    // let datum = new Date();
+    console.log("date", date);
+    // att lägga till en dag görs med funktionen set date
+    // datum.setDate(datum.getDate() + 1)
+    console.log("date", datum);
+    // I javascript startar varje vecka med söndag ( söndag = 0 lördag = 6)
+    // med metoden getDay() får man en siffra som anger dag i veckan
+    // let dayOfWeek = datum.getDay();
+    console.log("dayOfWeek", dayOfWeek);
+
+    function getWeekDates(datum) {
+      let d = new Date(datum);
+      let dayOfWeek = d.getDay();
+      let preDays = -dayOfWeek;
+      let postDays = 7 + preDays;
+      let dates = [];
+      d.setDate(d.getDate() + preDays);
+      for (let i = preDays; i < postDays; i++) {
+        d.setDate(d.getDate() + 1);
+
+        let yyyymmdd = d.toLocaleDateString();
+
+        
+        // En början om man bara vill visa datum utan månad och år
+        // let obj = {date:yyyymmdd, dd:"något..."}
+        dates.push(yyyymmdd);
+      }
+      return dates;
+    }
+
+    // let calendarDates = getWeekDates(datum);
+    console.log("caldendarDates", calendarDates);
+    // en referens till omslutande ul element
+    const calendarElement = document.getElementById("calendar");
+    // SKAPA EN FUNKTION AV DENNA PGA ATT DENNA ANVÄNDS MER ÄN EN GÅNG
+    async function showWeekDates(dates) {
+
+      await fetch("/calendar/api", {
+          method: "GET"
+        })
+        .then(function (response) {
+          // console.log("hej då")
+
+          return response.json();
+        })
+        .then(function (events) { // uppdate my savedEvents array
+          savedEvents = events
+          // console.log(savedEvents, events)
+          showWeekDates(calendarDates);
+        });
+
+      datum.setDate(datum.getDate() + 1)
+
+      // console.log("savedEvents", savedEvents)
+
+      // radera alla li elements
+      calendarElement.innerText = "";
+      dates.forEach(element => {
+        // skapa ett list elelemt
+        let li = document.createElement("li");
+
+        li.classList.add("listItem")
+
+        // let span = document.createElement("span");
+        // ange innehåll
+        li.innerText = element;
+        // lägg till det omslutande ul elementet
+        calendarElement.appendChild(li);
+
+        //   //  Insert title and date in browser
+        let result = savedEvents.events.filter((ele) => {
+
+
+        })
+        if (result.length > 0) {
+          return ele.date === element;
+        }
+      });
+    }
+    // skapa en kalender dynamiskt
+    // en itteration över veckans datum
+    showWeekDates(calendarDates);
+    // navigera mellan veckor
+    const previous = document.getElementById("previous");
+    const next = document.getElementById("next");
+    // händelser -klick
+    previous.addEventListener("click", () => {
+      console.log("gå bakåt");
+      // Kontrollera vilken dag som nu är veckans första dag
+      let currentFirstDayOfWeekElement = document.querySelector(".listItem");
+      console.log(currentFirstDayOfWeekElement, "currentFirstDayOfWeekElement");
+      let currentMonday = currentFirstDayOfWeekElement.innerText;
+      console.log("currentMonday", currentMonday);
+      // en vecka tidigare...
+      // skapa först ett äkta datumobjekt av currentMonday
+      let day = new Date(currentMonday);
+      // en vecka tidigare
+      day.setDate(day.getDate() - 7);
+      console.log("day...", day);
+      // ändra innehållet i ul elementet
+      // hämta först veckans datum
+      calendarDates = getWeekDates(day);
+      console.log("caldendarDates", calendarDates);
+      showWeekDates(calendarDates);
     });
-  }
-  // skapa en kalender dynamiskt
-  // en itteration över veckans datum
-  showWeekDates(calendarDates);
-  // navigera mellan veckor
-  const previous = document.getElementById("previous");
-  const next = document.getElementById("next");
-  // händelser -klick
-  previous.addEventListener("click", () => {
-    console.log("gå bakåt");
-    // Kontrollera vilken dag som nu är veckans första dag
-    let currentFirstDayOfWeekElement = document.querySelector(".listItem");
-    console.log(currentFirstDayOfWeekElement, "currentFirstDayOfWeekElement");
-    let currentMonday = currentFirstDayOfWeekElement.innerText;
-    console.log("currentMonday", currentMonday);
-    // en vecka tidigare...
-    // skapa först ett äkta datumobjekt av currentMonday
-    let day = new Date(currentMonday);
-    // en vecka tidigare
-    day.setDate(day.getDate() - 7);
-    console.log("day...", day);
-    // ändra innehållet i ul elementet
-    // hämta först veckans datum
-    calendarDates = getWeekDates(day);
-    console.log("caldendarDates", calendarDates);
-    showWeekDates(calendarDates);
-  });
-  next.addEventListener("click", () => {
-    console.log("gå framåt");
-    // Kontrollera vilken dag som nu är veckans första dag
-    let currentFirstDayOfWeekElement = document.querySelector(".listItem");
-    console.log(currentFirstDayOfWeekElement, "currentFirstDayOfWeekElement");
-    let currentMonday = currentFirstDayOfWeekElement.innerText;
-    console.log("currentMonday", currentMonday);
-    // en vecka tidigare...
-    // skapa först ett äkta datumobjekt av currentMonday
-    let day = new Date(currentMonday);
-    // en vecka tidigare
-    day.setDate(day.getDate() + 7);
-    console.log("day...", day);
-    // ändra innehållet i ul elementet
-    // hämta först veckans datum
-    calendarDates = getWeekDates(day);
-    console.log("caldendarDates", calendarDates);
-    showWeekDates(calendarDates);
-  });
+    next.addEventListener("click", () => {
+      console.log("gå framåt");
+      // Kontrollera vilken dag som nu är veckans första dag
+      let currentFirstDayOfWeekElement = document.querySelector(".listItem");
+      console.log(currentFirstDayOfWeekElement, "currentFirstDayOfWeekElement");
+      let currentMonday = currentFirstDayOfWeekElement.innerText;
+      console.log("currentMonday", currentMonday);
+      // en vecka tidigare...
+      // skapa först ett äkta datumobjekt av currentMonday
+      let day = new Date(currentMonday);
+      // en vecka tidigare
+      day.setDate(day.getDate() + 7);
+      console.log("day...", day);
+      // ändra innehållet i ul elementet
+      // hämta först veckans datum
+      calendarDates = getWeekDates(day);
+      console.log("caldendarDates", calendarDates);
+      showWeekDates(calendarDates);
+    });
 
-    async function weeklyEvents(date) {
-      const response = await fetch(`/index/${date}`,{
-        method: "get"
-      })
-    const responseData = await response.json();
-    renderEvents(responseData.events)
-     }
 
-     let events = [{date: "", title: ""},]
-     Array.from(events).forEach(element => {
+    // async function weeklyEvents(date) {
+    //   const response = await fetch(`/index/${date}`,{
+    //     method: "get"
+    //   })
+    // const responseData = await response.json();
+    // renderEvents(responseData.events)
+    //  }
 
-        let filteredEvents = events.filter(e => e.date === element);
-     
-     console.log("element");
-      })
+    //  let events = [{date: "", title: ""},]
+    //  Array.from(events).forEach(element => {
 
-     //  let events = {date: "", title: ""}
+    //     let filteredEvents = events.filter(e => e.date === element);
+
+    //  console.log("element");
+    //   })
+
+    //  let events = {date: "", title: ""}
     //  Object.keys(obj).forEach(key => {
 
     //     let filteredEvents = events.filter(e => e.date === element);
     //  })
     //  console.log("weeklyEvents")
-
   </script>
 
 

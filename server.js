@@ -25,12 +25,16 @@ app.get('/style.css', function(req, res) {
 // app.get("/", (req, res) => {
 //     res.send('hell0o')
 // })
-app.get('/index', (req, res) => {
-    let events = eventsModel.getAll();
-    res.render('index', {
-        events : events
-    })
-})
+// app.get('/index', (req, res) => {
+//     let events = eventsModel.getAll();
+//     res.render('index', {
+//         events : events
+//     })
+// })
+
+
+
+
 
 // app.get('/index/:date', eventController.weekEvents);
 
@@ -43,9 +47,16 @@ app.get('/firstPage', (req, res) => {
     res.render('firstPage');
 });
 
-app.get('calendar')
+app.get('/calendar/api', eventController.getApi);
 
-app.post('/eventSave', eventController.createEvent);
+
+// nytt
+app.get('/calendar', eventController.getAll);
+
+
+
+
+app.post('/calendar', eventController.createEvent);
 // route to eventDelete
 // app.delete('/deleteEvent/:id', eventController.deleteEvent); // Gammal kod --------------------------------
 app.delete('/index/:id', eventController.deleteEvent); // Ny kod -------------------------------------

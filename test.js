@@ -1,3 +1,3 @@
-import eventsModel from "./models/eventsModel.js";
+// import eventsModel from "./models/eventsModel.js";
 
-eventsModel.getDateTime();
+// eventsModel.getDateTime();

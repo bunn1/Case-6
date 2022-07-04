@@ -65,7 +65,7 @@ import eventsModel from "../models/eventsModel.js";
         //         message: "Could not delete"
         //     });
         // }
-        res.redirect("/index")
+        res.redirect("/calendar")
     },
 
     editEvent: (req, res) => {
@@ -90,7 +90,7 @@ import eventsModel from "../models/eventsModel.js";
         // }
         // console.log("Title Updated");
 
-        res.redirect('/index');
+        res.redirect('/calendar');
     },
 }
 
