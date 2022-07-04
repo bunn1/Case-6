@@ -70,6 +70,10 @@
 
   </div>
 
+  <div class="eventWrapper">
+
+  </div>
+
   <!-- Footer -->
   <%- include('partials/footer.ejs') %>
 
@@ -219,7 +223,6 @@
         //   //  Insert title and date in browser
         let result = savedEvents.events.filter((ele) => {
 
-
         })
         if (result.length > 0) {
           return ele.date === element;
@@ -272,12 +275,21 @@
       showWeekDates(calendarDates);
     });
 
-    parent.appendchild(event-Title);
-    parent.appenchild(event-Time);
+let result = savedEvents.events.filter((e) => {
+  return e.date === ele;
+})
+
+    parent.appendchild(event - Title);
+    parent.appenchild(event - Time);
+
+    const eventWrapper = document.getElementsByClassName("eventWrapper")
 
     if (result.length > 0) {
-      
-      
+      eventWrapper.style = "display: inline";
+      eventWrapper.classList.add("event");
+      eventTitle.innerText = result[0].title;
+      eventTime.innerText = result[0].time;
+
     }
 
 
