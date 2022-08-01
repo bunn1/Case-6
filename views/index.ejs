@@ -47,7 +47,7 @@
       <ion-icon name="chevron-forward-outline"></ion-icon>
     </div>
 
-    <form action="/calendar" method="POST">
+    <form action="/events" method="POST">
       <label for="title">Event</label>
       <input type="text" name="title" id="title">
       <label for="date">Date And Time</label>
@@ -68,11 +68,12 @@
 
   </div>
 
-  </div>
 
-  <div class="eventWrapper">
 
-  </div>
+  <div class="event-wrapper"></div>
+
+
+
 
   <!-- Footer -->
   <%- include('partials/footer.ejs') %>
@@ -82,6 +83,9 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <script>
+
+   
+
     // Skapar tom array som kan uppdateras
     let datum = new Date();
     let savedEvents = [];
@@ -130,7 +134,7 @@
         };
         console.log(`/events/${id}`)
 
-        const response = fetch(`/events/${id}`, {
+        const response = fetch(`/events?id=${id}`, {
           method: "PUT",
           body: JSON.stringify(newEvent),
           headers: {
@@ -225,7 +229,7 @@
 
         })
         if (result.length > 0) {
-          return ele.date === element;
+          return ele.date === element ;
         }
       });
     }
@@ -275,48 +279,38 @@
       showWeekDates(calendarDates);
     });
 
-let result = savedEvents.events.filter((e) => {
-  return e.date === ele;
-})
-
-    eventWrapper.appendchild(event - Title);
-    eventWrapper.appenchild(event - Time);
-
-    const eventWrapper = document.getElementsByClassName("eventWrapper")
-
-    if (result.length > 0) {
-      eventWrapper.style = "display: inline";
-      eventWrapper.classList.add("event");
-      eventTitle.innerText = result[0].title;
-      eventTime.innerText = result[0].time;
-
-    }
 
 
 
 
-    // async function weeklyEvents(date) {
-    //   const response = await fetch(`/index/${date}`,{
-    //     method: "get"
-    //   })
-    // const responseData = await response.json();
-    // renderEvents(responseData.events)
-    //  }
 
-    //  let events = [{date: "", title: ""},]
-    //  Array.from(events).forEach(element => {
 
-    //     let filteredEvents = events.filter(e => e.date === element);
+    
 
-    //  console.log("element");
-    //   })
 
-    //  let events = {date: "", title: ""}
-    //  Object.keys(obj).forEach(key => {
 
-    //     let filteredEvents = events.filter(e => e.date === element);
-    //  })
-    //  console.log("weeklyEvents")
+
+    // let result = savedEvents.filter((e) => {
+    //   return e.date === ele;
+    // })
+
+    // const eventWrapper = document.getElementsByClassName("event-wrapper");
+
+    // if (result.length > 0) {
+    //   eventWrapper.style = "display: inline";
+    //   eventWrapper.classList.add("event");
+    //   title.innerText = result[0].title;
+    //   date.innerText = result[0].time;
+
+    //   eventWrapper.appendChild(title);
+    //   eventWrapper.appenChild(date);
+    // }
+
+ 
+
+
+
+   
   </script>
 
 

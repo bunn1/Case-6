@@ -17,12 +17,6 @@ fetch("/calendar/api", {
   console.log("savedEvents", savedEvents)
 
 
-
-
-
-
-
-
 function showWeekDates(dates) {
     // radera alla li elements
     calendarElement.innerText = "";

@@ -4,41 +4,6 @@
 
 
 import fs from 'fs';
-// import events from 'events';
-
-// Shortcut "Path"
-// const data= "./calenderdb.json"
-
-// const eventModel = {
-//     // Function to get Date and Time -----------------------------
-//     getAllEvents: function () {
-//         // Convert JSON file to javascript and be able to read it -------------   
-//         return JSON.parse(fs.readFileSync(dbPath, 'utf8'));
-//     },
-
-//     getEvent: function (id) {
-//         return this.getEvent().find((event) => event.id === id)
-//     },
-
-//     addEvent: function (dateTime, author) {
-
-//         // Method to write new date and time quote into database -------------------
-
-//         const allDateTime = this.getDateTime();
-
-
-//         // Create new dateTime object
-//         const newDateTime = {
-
-
-//             // dateTime,
-//             // author
-//         }
-//     }
-// }
-// export default eventModel;
-
-// import fs from "fs";
 
 const dbPath = "./calenderdb.json";
 
@@ -88,46 +53,26 @@ const eventsModel = {
         return true;
     },
 
-    // updateEvent: function (id, newTitle, newDate) { Gammal kod ---------------------------------------
-    //     // Get all quotes
-    //     const allEvents = this.readEvents();
-
-    //     // if quotes are not defined we return false
-    //     // to signal that something went wrong
-    //     // if (!allEvents) {
-    //     //   return false;
-    //     // }
-
-    //     // Update quote specified by id
-    //     const idx = allEvents.findIndex((event) => event.id === id);
-
-    //     if (idx < 0) {
-    //       return false;
-    //     }
-
-    //     // Här sker uppdateringen
-    //     allEvents[idx].title = newTitle;
-    //     allEvents[idx].date = newDate;
-
-    //     // Write new state to db
-    //     this.saveEvent(allEvents);
-
-    //     return true;
-    //   }
-    // }
 
     editEvent: function (id, newTitle, newDate) {
         const allEvents = this.getAll();
-        const leg = allEvents.findIndex((event) => event.id === id);
+        // const leg = allEvents.findIndex((event) => event.id === id);
+       
+        for (let i = 0; i < allEvents.length; i++) {
+            const currentEvent = allEvents[i];
+            console.log(currentEvent.id, id)
 
-        if (!leg < 0) {
-            return false;
+
+            if (currentEvent.id == id){ 
+                console.log("find a match")
+            allEvents[i].title = newTitle;
+            allEvents[i].date = newDate;
+            break;
+            }
         }
-
-        allEvents[leg].title = newTitle;
-        allEvents[leg].date = newDate;
-
-        // Write new state to db
+            
+        console.log(allEvents)
+     
         this.saveEvent(allEvents);
 
         return true;
