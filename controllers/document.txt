@@ -258,12 +258,9 @@
       showWeekDates(calendarDates);
     });
 
-   
-    // const eventWrapper = document.getElementsByClassName("event-wrapper");
-
     const calendar = document.querySelector("#calendar");
 
-     let result = savedEvents.filter((e) => {
+    let result = savedEvents.filter((e) => {
       return e.date === ele;
     })
 
@@ -272,6 +269,7 @@
       calendar.style = "display: inline";
       calendar.classList.add("event");
       title.innerText = result[0].title;
+      console.log(result)
       date.innerText = result[0].time;
 
       calendar.appendChild(title);
