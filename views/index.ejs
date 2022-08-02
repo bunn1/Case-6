@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
   <!-- Header -->
   <%- include('partials/header.ejs') %>
 
@@ -25,7 +24,6 @@
   <% }) %>
 
   </div>
-
 
   <div id="changeWeek">
     <ion-icon name="chevron-back-outline"></ion-icon>
@@ -62,17 +60,15 @@
       <p class="event-date"><%- ele.date %></p>
       <button onclick="deleteEvent(<%= ele.id %>)">Delete</button>
       <button class="edit-button" data-id="<%=ele.id %>" id="<%=ele.id%>">Edit</button>
-
     </div>
     <% }) %>
-
   </div>
 
+  <div class="event-wrapper">
 
+    <p id="result"></p>
 
-  <div class="event-wrapper"></div>
-
-
+  </div>
 
 
   <!-- Footer -->
@@ -83,9 +79,6 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <script>
-
-   
-
     // Skapar tom array som kan uppdateras
     let datum = new Date();
     let savedEvents = [];
@@ -93,8 +86,6 @@
     let dayOfWeek = datum.getDay();
     // Skapar tom array som kan uppdateras     
     console.log("hej");
-
-
 
     // loggar id och event och kör en fetch till eventDelete
     async function deleteEvent(id) {
@@ -140,10 +131,7 @@
           headers: {
             "Content-Type": "application/json",
           },
-          // }).then(response => {
-          //   console.log(response);
-          // }).catch(e => {
-          //   console.log(e);
+
         });
 
         // Check if there is a redirect to follow the new url
@@ -177,7 +165,6 @@
 
         let yyyymmdd = d.toLocaleDateString();
 
-
         // En början om man bara vill visa datum utan månad och år
         // let obj = {date:yyyymmdd, dd:"något..."}
         dates.push(yyyymmdd);
@@ -202,13 +189,11 @@
         })
         .then(function (events) { // uppdate my savedEvents array
           savedEvents = events
-          // console.log(savedEvents, events)
+      
           showWeekDates(calendarDates);
         });
 
       datum.setDate(datum.getDate() + 1)
-
-      // console.log("savedEvents", savedEvents)
 
       // radera alla li elements
       calendarElement.innerText = "";
@@ -229,7 +214,7 @@
 
         })
         if (result.length > 0) {
-          return ele.date === element ;
+          return ele.date === element;
         }
       });
     }
@@ -279,38 +264,21 @@
       showWeekDates(calendarDates);
     });
 
+    let result = savedEvents.filter((e) => {
+      return e.date === ele;
+    })
 
+    const eventWrapper = document.getElementsByClassName("event-wrapper");
 
+    if (result.length > 0) {
+      eventWrapper.style = "display: inline";
+      eventWrapper.classList.add("event");
+      title.innerText = result[0].title;
+      date.innerText = result[0].time;
 
-
-
-
-    
-
-
-
-
-    // let result = savedEvents.filter((e) => {
-    //   return e.date === ele;
-    // })
-
-    // const eventWrapper = document.getElementsByClassName("event-wrapper");
-
-    // if (result.length > 0) {
-    //   eventWrapper.style = "display: inline";
-    //   eventWrapper.classList.add("event");
-    //   title.innerText = result[0].title;
-    //   date.innerText = result[0].time;
-
-    //   eventWrapper.appendChild(title);
-    //   eventWrapper.appenChild(date);
-    // }
-
- 
-
-
-
-   
+      eventWrapper.appendChild(title);
+      eventWrapper.appenChild(date);
+    }
   </script>
 
 
