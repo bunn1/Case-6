@@ -55,8 +55,6 @@ app.get('/calendar', eventController.getAll);
 app.delete('/index/:id', eventController.deleteEvent); // Ny kod -------------------------------------
 // router.delete('/deleteEvent/:id', eventController.deleteEvent);
 
-// route to eventUpdate
-// app.put('/index/:id', eventController.updateEvent); // Gammal kod ------------------------------
 
 app.use(express.static('index'));
 app.listen(port, () => {
@@ -68,4 +66,4 @@ app.post('/events', eventController.createEvent);
 app.put('/events', eventController.editEvent); // Ny kod ----------------------------------------
 
 
-app.get()
+// app.get()
