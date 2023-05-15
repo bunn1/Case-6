@@ -66,4 +66,3 @@ app.post('/events', eventController.createEvent);
 app.put('/events', eventController.editEvent); // Ny kod ----------------------------------------
 
 
-// app.get()

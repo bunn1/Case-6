@@ -49,7 +49,7 @@
       <label for="title">Event</label>
       <input type="text" name="title" id="title">
       <label for="date">Date And Time</label>
-      <input type="text" name="date" id="date">
+      <input type="date" name="date" id="date">
       <button type="submit">Create</button>
     </form>
 
@@ -183,34 +183,49 @@
         })
         .then(function (events) { // uppdate my savedEvents array
           savedEvents = events
+          console.log(savedEvents)
+          datum.setDate(datum.getDate() + 1)
 
-          showWeekDates(calendarDates);
+          // radera alla li elements
+          calendarElement.innerText = "";
+          dates.forEach(element => {
+            // skapa ett list elelemt
+            let li = document.createElement("li");
+
+            li.classList.add("listItem")
+
+
+             //   //  Insert title and date in browser
+            let result = savedEvents.events.filter((ele) => ele.date === element
+
+            )
+            console.log(result)
+            // let span = document.createElement("span");
+            // ange innehåll
+            line = element + " "
+            
+            result.forEach(e => {
+              line += e.title + " "
+            });
+            li.innerText = line
+            // JSON.stringify(result.map(function (
+            //   e
+            // ) {return e.title}
+
+            // )).slice(1,-1)
+            // ;
+            // lägg till det omslutande ul elementet
+            calendarElement.appendChild(li);
+
+           
+            // if (result.length > 0) {
+            //   return ele.date === element;
+            // }
+          });
+
         });
 
-      datum.setDate(datum.getDate() + 1)
 
-      // radera alla li elements
-      calendarElement.innerText = "";
-      dates.forEach(element => {
-        // skapa ett list elelemt
-        let li = document.createElement("li");
-
-        li.classList.add("listItem")
-
-        // let span = document.createElement("span");
-        // ange innehåll
-        li.innerText = element;
-        // lägg till det omslutande ul elementet
-        calendarElement.appendChild(li);
-
-        //   //  Insert title and date in browser
-        let result = savedEvents.events.filter((ele) => {
-
-        })
-        if (result.length > 0) {
-          return ele.date === element;
-        }
-      });
     }
     // skapa en kalender dynamiskt
     // en itteration över veckans datum
@@ -224,7 +239,7 @@
       // Kontrollera vilken dag som nu är veckans första dag
       let currentFirstDayOfWeekElement = document.querySelector(".listItem");
       console.log(currentFirstDayOfWeekElement, "currentFirstDayOfWeekElement");
-      let currentMonday = currentFirstDayOfWeekElement.innerText;
+      let currentMonday = currentFirstDayOfWeekElement.innerText.split(" ")[0];
       console.log("currentMonday", currentMonday);
       // en vecka tidigare...
       // skapa först ett äkta datumobjekt av currentMonday
@@ -243,7 +258,7 @@
       // Kontrollera vilken dag som nu är veckans första dag
       let currentFirstDayOfWeekElement = document.querySelector(".listItem");
       console.log(currentFirstDayOfWeekElement, "currentFirstDayOfWeekElement");
-      let currentMonday = currentFirstDayOfWeekElement.innerText;
+      let currentMonday = currentFirstDayOfWeekElement.innerText.split(" ")[0];
       console.log("currentMonday", currentMonday);
       // en vecka tidigare...
       // skapa först ett äkta datumobjekt av currentMonday
@@ -277,8 +292,8 @@
 
       calendar.innerText = result;
     }
-
   </script>
 
 </body>
+
 </html>
